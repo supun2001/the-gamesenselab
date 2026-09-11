@@ -1,5 +1,7 @@
 # Send confirmation emails as GameSense Lab
 
+For the separate welcome message sent after joining the waitlist, follow [WAITLIST_EMAIL_SETUP.md](WAITLIST_EMAIL_SETUP.md). It has its own server-side sender and is not an Auth email template.
+
 Supabase remains the account, password-hash, verification-token, profile, and waitlist store. A custom SMTP provider delivers the confirmation email from `verification@thegamesenselab.com`. The provider necessarily processes recipients, message contents, and delivery logs; this does not create a second application user database. SMTP does not replace Supabase Auth.
 
 ## Configure the sender

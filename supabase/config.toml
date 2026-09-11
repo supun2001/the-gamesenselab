@@ -1,0 +1,3 @@
+[functions.waitlist-welcome]
+# This scheduled worker authenticates with a private X-Worker-Secret header.
+verify_jwt = false
