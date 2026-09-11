@@ -1,3 +1,28 @@
+// Never retain SMTP response/message text: it may contain addresses or credentials.
+export function smtpFailureCode(error) {
+  const codes = [
+    'EAUTH',
+    'ECONNECTION',
+    'ECONNREFUSED',
+    'ECONNRESET',
+    'ETIMEDOUT',
+    'ETIMEOUT',
+    'EDNS',
+    'ENOTFOUND',
+    'ESOCKET',
+    'ETLS',
+    'EENVELOPE',
+    'EMESSAGE',
+    'ESTREAM',
+  ]
+  const code = codes.includes(error?.code) ? error.code : 'UNKNOWN'
+  const response =
+    Number.isInteger(error?.responseCode) && error.responseCode >= 400 && error.responseCode <= 599
+      ? `_${error.responseCode}`
+      : ''
+  return `smtp_${code}${response}`
+}
+
 // Dependencies are injected so failure handling can be tested without sending email.
 export function createWorker({ secret, claim, send, complete, fail }) {
   return async (request) => {
@@ -14,8 +39,8 @@ export function createWorker({ secret, claim, send, complete, fail }) {
         if (!job) break
         try {
           await send(job)
-        } catch {
-          await fail(job)
+        } catch (error) {
+          await fail(job, smtpFailureCode(error))
           failed++
           continue
         }

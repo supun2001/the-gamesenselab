@@ -1,5 +1,6 @@
 <script setup>
-import { reactive, ref, onMounted, onUnmounted } from 'vue'
+import { reactive, ref, watch, onMounted, onUnmounted } from 'vue'
+import { session, authReady } from '../lib/auth'
 import { registerWaitlistTool } from '../lib/webmcp'
 import { supabase, configurationMessage } from '../lib/supabase'
 import { games, waitlistPayload, validateWaitlist } from '../lib/validation'
@@ -13,14 +14,49 @@ const form = reactive({
 })
 const loading = ref(false),
   error = ref(''),
-  success = ref(false)
+  success = ref(false),
+  checking = ref(true)
+let identityVersion = 0
 let unregister = () => {}
+watch(
+  () => [session.value?.user?.id, session.value?.user?.email],
+  async () => {
+    const version = ++identityVersion
+    success.value = false
+    error.value = ''
+    checking.value = true
+    await authReady
+    if (version !== identityVersion) return
+    form.email = session.value?.user?.email || ''
+    try {
+      if (supabase && session.value?.user) {
+        const { data, error: failure } = await supabase.rpc('my_waitlist_status')
+        if (version === identityVersion && !failure) success.value = data === true
+      }
+    } catch {
+      // Keep signup available if the status check is temporarily unavailable.
+    } finally {
+      if (version === identityVersion) checking.value = false
+    }
+  },
+  { immediate: true },
+)
 onMounted(() => {
-  unregister = registerWaitlistTool(form)
+  watch(
+    [checking, success],
+    ([busy, joined]) => {
+      unregister()
+      unregister = !busy && !joined ? registerWaitlistTool(form) : () => {}
+    },
+    { immediate: true },
+  )
 })
-onUnmounted(() => unregister())
+onUnmounted(() => {
+  identityVersion++
+  unregister()
+})
 async function submit() {
-  if (loading.value) return
+  if (loading.value || checking.value || success.value) return
   error.value = validateWaitlist(form)
   if (error.value) return
   if (!supabase) {
@@ -28,19 +64,19 @@ async function submit() {
     return
   }
   loading.value = true
+  const version = identityVersion
   try {
     const { error: failure } = await supabase.from('waitlist').insert(waitlistPayload(form))
-    if (failure) {
-      error.value =
-        failure.code === '23505'
-          ? 'This email is already on the waitlist. You’re all set.'
-          : 'We couldn’t save your place. Please try again shortly.'
+    if (version !== identityVersion) return
+    if (failure && failure.code !== '23505') {
+      error.value = 'We couldn’t save your place. Please try again shortly.'
       return
     }
     success.value = true
     unregister()
   } catch {
-    error.value = 'We couldn’t connect. Check your connection and try again.'
+    if (version === identityVersion)
+      error.value = 'We couldn’t connect. Check your connection and try again.'
   } finally {
     loading.value = false
   }
@@ -69,11 +105,17 @@ async function submit() {
           <span class="small-label">RESERVE YOUR PLACE</span
           ><span class="gold" aria-hidden="true">✳</span>
         </div>
-        <div v-if="success" class="success-panel" role="status">
+        <div v-if="checking" class="success-panel" role="status" aria-live="polite">
+          <p>Checking your waitlist status…</p>
+        </div>
+        <div v-else-if="success" class="success-panel" role="status">
           <span class="success-check" aria-hidden="true">✓</span>
           <h3>You’re on the list.</h3>
-          <p>You’re on the list. Welcome to the beginning of GameSense Lab.</p>
-          <RouterLink class="button secondary" to="/signup">CREATE AN ACCOUNT ↗</RouterLink>
+          <p>Your place is saved. We’ll email you with launch updates.</p>
+          <RouterLink v-if="session" class="button secondary" to="/dashboard"
+            >GO TO DASHBOARD ↗</RouterLink
+          >
+          <RouterLink v-else class="button secondary" to="/signup">CREATE AN ACCOUNT ↗</RouterLink>
         </div>
         <form v-else @submit.prevent="submit" :aria-busy="loading" novalidate>
           <div class="form-grid">

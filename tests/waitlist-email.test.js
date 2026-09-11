@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { createWorker } from '../supabase/functions/waitlist-welcome/worker.js'
+import { createWorker, smtpFailureCode } from '../supabase/functions/waitlist-welcome/worker.js'
 import { html, text, communityUrl } from '../supabase/functions/waitlist-welcome/email.js'
 
 const request = (secret = 'test-only') =>
@@ -8,6 +8,28 @@ const request = (secret = 'test-only') =>
     method: 'POST',
     headers: { 'x-worker-secret': secret },
   })
+test('SMTP diagnostics preserve only allowlisted codes and numeric response codes', () => {
+  assert.equal(
+    smtpFailureCode({ code: 'EAUTH', responseCode: 535, message: 'private', response: 'private' }),
+    'smtp_EAUTH_535',
+  )
+  assert.equal(smtpFailureCode({ code: 'private', responseCode: 'private' }), 'smtp_UNKNOWN')
+  assert.equal(smtpFailureCode(null), 'smtp_UNKNOWN')
+  assert.equal(smtpFailureCode({ code: 'ETIMEDOUT' }), 'smtp_ETIMEDOUT')
+})
+test('safe diagnostics reach the retry record', async () => {
+  let received
+  const { worker } = fixture({
+    send: async () => {
+      throw { code: 'EAUTH', responseCode: 535, message: 'private' }
+    },
+    fail: async (_job, code) => {
+      received = code
+    },
+  })
+  await worker(request())
+  assert.equal(received, 'smtp_EAUTH_535')
+})
 function fixture(overrides = {}) {
   const calls = []
   const jobs = [{ waitlist_id: 'one' }, { waitlist_id: 'two' }]

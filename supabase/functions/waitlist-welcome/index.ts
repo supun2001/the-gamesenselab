@@ -56,7 +56,8 @@ Deno.serve(
           'List-Unsubscribe': '<mailto:contact@thegamesenselab.com?subject=Waitlist%20unsubscribe>',
         },
       })
-      if (!result.accepted?.length) throw new Error('SMTP rejected recipient')
+      if (!result.accepted?.length)
+        throw Object.assign(new Error('SMTP rejected recipient'), { code: 'EENVELOPE' })
     },
     complete: (job: Job) =>
       update(job, {
@@ -64,10 +65,10 @@ Deno.serve(
         sent_at: new Date().toISOString(),
         last_error: null,
       }),
-    fail: (job: Job) =>
+    fail: (job: Job, failureCode: string) =>
       update(job, {
         status: job.attempts >= 5 ? 'failed' : 'pending',
-        last_error: 'smtp_send_failed',
+        last_error: failureCode,
         available_at: new Date(Date.now() + 2 ** job.attempts * 60000).toISOString(),
       }),
   }),
