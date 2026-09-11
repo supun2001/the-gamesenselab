@@ -10,7 +10,7 @@ export const links = {
 
 // Optional replacement artwork, relative to public/. Empty values use the built-in design.
 export const artwork = {
-  logo: '',
+  logo: `${import.meta.env.BASE_URL}images/logo.png`,
   banner: '',
   book: `${import.meta.env.BASE_URL}images/book-cover.jpg`,
 }

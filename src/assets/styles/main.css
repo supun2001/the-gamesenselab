@@ -160,8 +160,9 @@ svg {
   white-space: nowrap;
 }
 .brand-symbol {
-  width: 38px;
-  height: 38px;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
   color: var(--gold);
   object-fit: contain;
 }
