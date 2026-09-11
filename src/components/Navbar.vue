@@ -15,6 +15,7 @@ const nav = [
   ['Home', ''],
   ['AI Coach', '#ai-coach'],
   ['Read The Player', '#book'],
+  ['Learn', '#learn'],
   ['Development', '#development'],
   ['Community', '#community'],
 ]

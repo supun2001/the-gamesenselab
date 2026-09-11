@@ -37,6 +37,7 @@ Unauthorized use, redistribution, or reproduction of this project or its content
 - Update publisher disclaimers in `src/config/links.js` as additional games are introduced. Only VALORANT is planned for the initial release; future titles are labelled as exploration.
 - The three-month offer is implemented as waitlist copy. No billing, access grant, beta invitation, or subscription fulfilment is implemented; define launch eligibility/fulfilment before launch.
 - The Privacy Policy uses the supplied September 2026 draft, with readable sections and contact@thegamesenselab.com. Outstanding business decisions from that draft are recorded in `docs/privacy-editorial-notes.md`. Terms still uses the initial starter content. No analytics/tracking SDK or marketing cookie is installed. Supabase uses local browser storage for the authenticated session. Google Fonts requests are used for typography.
+- The homepage VALORANT playbook covers the 20 SEO topics in `src/config/learning.js`: six high-priority foundations, nine focused practice topics and five long-tail questions. Edit the visible copy there; `src/components/LearningSection.vue` renders it. This is homepage content, not separate indexable guide URLs.
 - SEO title, canonical, Open Graph, and Twitter summary metadata live in `index.html`; routes update document titles. Add a real sharing image and its absolute metadata URL if desired. Hash-route pages share the static server metadata; no false route-specific social previews are claimed.
 
 ## Structure

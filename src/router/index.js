@@ -7,7 +7,7 @@ import HomeView from '../views/HomeView.vue'
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', component: HomeView, meta: { title: 'Play Smarter' } },
+    { path: '/', component: HomeView, meta: { title: 'VALORANT Game Sense & Decision Making' } },
     {
       path: '/signup',
       component: () => import('../views/SignupView.vue'),

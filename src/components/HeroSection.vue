@@ -19,8 +19,8 @@ import { links, artwork } from '../config/links'
       <h1 id="hero-title">PLAY<br /><span>SMARTER.</span></h1>
       <h2>AI-Powered Gameplay Coaching Is Coming.</h2>
       <p class="hero-description">
-        We’re building a new way for competitive players to understand their decisions, identify
-        repeated habits, analyse key gameplay moments and improve their game sense over time.
+        We’re building AI-powered coaching to help you improve game sense in VALORANT, understand
+        your decision making, and review positioning, rotations and utility usage in your gameplay.
       </p>
       <div class="button-row">
         <RouterLink class="button primary" :to="{ path: '/', hash: '#waitlist' }"
