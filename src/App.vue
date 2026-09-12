@@ -1,4 +1,5 @@
 <script setup>
+import AnalyticsConsent from './components/AnalyticsConsent.vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 function focusMain() {
@@ -10,4 +11,5 @@ function focusMain() {
   <a class="skip-link" href="#main" @click.prevent="focusMain">Skip to content</a><Navbar />
   <main id="main" tabindex="-1"><RouterView /></main>
   <Footer />
+  <AnalyticsConsent />
 </template>

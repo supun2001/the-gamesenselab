@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import { authReady, session } from '../lib/auth'
 import { getVerifiedSession } from '../lib/verified-auth'
 import { supabase } from '../lib/supabase'
+import { analytics } from '../lib/analytics-state'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -56,7 +57,9 @@ router.beforeEach(async (to) => {
   if (to.meta.requiresAuth && !session.value)
     return { path: '/login', query: { redirect: '/dashboard' } }
 })
-router.afterEach((to) => {
+router.afterEach((to, from, failure) => {
+  if (failure) return
   document.title = `GameSense Lab | ${to.meta.title || 'Play Smarter'}`
+  analytics.page(to.path, document.title)
 })
 export default router

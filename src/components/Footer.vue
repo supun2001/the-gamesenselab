@@ -1,4 +1,5 @@
 <script setup>
+import { consentVisible } from '../lib/analytics-state'
 import BrandMark from './BrandMark.vue'
 import ExternalLink from './ExternalLink.vue'
 import { links, publisherDisclaimers } from '../config/links'
@@ -20,6 +21,9 @@ function backToTop() {
     <div class="footer-links">
       <span>© 2026 GameSense Lab</span>
       <nav aria-label="Footer navigation">
+        <button class="cookie-settings" type="button" @click="consentVisible = true">
+          Cookie settings
+        </button>
         <RouterLink to="/privacy">Privacy Policy</RouterLink
         ><RouterLink to="/terms">Terms</RouterLink
         ><ExternalLink :href="links.contact" label="Contact details">Contact</ExternalLink
@@ -34,3 +38,13 @@ function backToTop() {
     </p>
   </footer>
 </template>
+
+<style scoped>
+.cookie-settings {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+</style>

@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, ref, watch, onMounted, onUnmounted } from 'vue'
+import { analytics } from '../lib/analytics-state'
 import { session, authReady } from '../lib/auth'
 import { registerWaitlistTool } from '../lib/webmcp'
 import { supabase, configurationMessage } from '../lib/supabase'
@@ -73,6 +74,7 @@ async function submit() {
       return
     }
     success.value = true
+    if (!failure) analytics.waitlistJoined()
     unregister()
   } catch {
     if (version === identityVersion)

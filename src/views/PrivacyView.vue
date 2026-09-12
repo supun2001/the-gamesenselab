@@ -42,7 +42,7 @@ const sections = [
     title: 'Technical information',
     text: 'When you visit the website, hosting and service providers may process limited technical information such as your IP address, browser and device details, operating system, requested pages, referral information, visit timestamps, and error or security logs.',
     after:
-      'No analytics SDK is currently installed on this website. If analytics tools are introduced, we will update this policy to identify the provider and explain the information collected.',
+      'If you allow analytics, Google Analytics 4 collects page visits, successful new waitlist signups, browser and device information, and cookie identifiers to help us understand website use. Google receives technical request information, including your IP address. Our custom events do not include names, emails, Riot IDs, account IDs, or form contents.',
   },
   {
     title: 'How we use information',
@@ -103,10 +103,11 @@ const sections = [
       'Cloudflare: DNS management. Any additional security, caching, or protection services depend on the deployed configuration.',
       'Whop: digital-product access, memberships, payments, and delivery where applicable.',
       'Namecheap Private Email: account confirmation and email communications. Email delivery involves processing recipient addresses and message contents.',
+      'Google Analytics: optional website usage measurement, loaded only after you allow analytics.',
       'Google Fonts: serving website typography, which involves standard request information such as IP addresses.',
     ],
     after:
-      'We will update this policy as providers change. Any future AI or analytics providers will be identified before their services process your information.',
+      'We will update this policy as providers change. Any future AI or additional analytics providers will be identified before their services process your information.',
   },
   {
     title: 'International transfers',
@@ -124,9 +125,9 @@ const sections = [
   },
   {
     title: 'Cookies and similar technologies',
-    text: 'The current website uses browser storage for Supabase authentication and session management. No analytics or advertising cookies are intentionally installed by this application. Hosting and authentication providers may use technologies necessary for their services.',
+    text: 'The current website uses browser storage for Supabase authentication and session management. If you allow analytics, Google Analytics uses cookies such as _ga and _ga_F9PJTVXGL2 to distinguish visits. Your analytics choice is saved in browser storage. Advertising consent is not granted by this application. Hosting and authentication providers may use technologies necessary for their services.',
     after:
-      'If non-essential cookies or similar technologies are introduced, we will explain their purpose and obtain consent where required before using them.',
+      'You can allow or decline analytics independently of using the site. Use Cookie settings in the footer to change your choice. Declining stops our analytics collection and removes accessible Google Analytics cookies; withdrawing a previous acceptance reloads the page. Withdrawal does not delete information already collected by Google Analytics.',
   },
   {
     title: 'Security',
