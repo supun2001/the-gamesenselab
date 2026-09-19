@@ -14,8 +14,6 @@ import { links } from '../config/links'
     <div class="button-row">
       <ExternalLink class="button primary" :href="links.discord" label="Discord"
         >JOIN DISCORD</ExternalLink
-      ><ExternalLink class="button secondary" :href="links.whop" label="Whop"
-        >VISIT WHOP</ExternalLink
       >
     </div>
     <span class="community-corner" aria-hidden="true">GSL / COMMUNITY</span>

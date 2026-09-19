@@ -30,12 +30,12 @@ Unauthorized use, redistribution, or reproduction of this project or its content
 
 ## Content and artwork
 
-- All social, book, and contact links are in `src/config/links.js`. The supplied Discord, Whop, book, Facebook, Instagram, and contact email destinations are configured there and reused across the site. Update them in this one file when needed. Empty links show an explicit coming-soon notice.
+- All social, book, and contact links are in `src/config/links.js`. The supplied Discord, Facebook, Instagram, and contact email destinations are configured there and reused across the site. Update them in this one file when needed. Empty links show an explicit coming-soon notice.
 - Place your GS logo in `public/images/logo.png`, banner in `public/images/banner.png`, and book cover in `public/images/book-cover.png`. Then set `artwork.logo`, `artwork.banner`, and `artwork.book` to `import.meta.env.BASE_URL + 'images/logo.png'` etc. This works for custom domains and repository subpaths. The existing mark, original generated hero (`public/images/hero.jpg`), and typographic book preview work until you add final brand assets. Keep images optimized; use a transparent logo and a 2:3 book cover.
 - The hero artwork is original AI-generated scene imagery, not official VALORANT artwork. Its descriptive source is in `public/images/README.md`.
 - Development updates are in `src/config/updates.js`; replace sample cards with real entries. Set dates to ISO `YYYY-MM-DD`; `null` deliberately displays “Date to be announced”. Optional images use an asset URL and load lazily.
 - Update publisher disclaimers in `src/config/links.js` as additional games are introduced. Only VALORANT is planned for the initial release; future titles are labelled as exploration.
-- The three-month offer is implemented as waitlist copy. No billing, access grant, beta invitation, or subscription fulfilment is implemented; define launch eligibility/fulfilment before launch.
+- The one-month offer is implemented as waitlist copy. No billing, access grant, beta invitation, or subscription fulfilment is implemented; define launch eligibility/fulfilment before launch.
 - The Privacy Policy uses the supplied September 2026 draft, with readable sections and contact@thegamesenselab.com. Outstanding business decisions from that draft are recorded in `docs/privacy-editorial-notes.md`. Terms still uses the initial starter content. Google Analytics 4 is loaded only after analytics consent, with advertising consent denied. Setup and verification are in `docs/analytics-setup.md`; turn off Enhanced measurement in the GA4 stream before deployment. Supabase uses local browser storage for the authenticated session. Google Fonts requests are used for typography.
 - The homepage VALORANT playbook covers the 20 SEO topics in `src/config/learning.js`: six high-priority foundations, nine focused practice topics and five long-tail questions. Edit the visible copy there; `src/components/LearningSection.vue` renders it. This is homepage content, not separate indexable guide URLs.
 - SEO title, canonical, Open Graph, and Twitter summary metadata live in `index.html`; routes update document titles. Add a real sharing image and its absolute metadata URL if desired. Hash-route pages share the static server metadata; no false route-specific social previews are claimed.
@@ -59,3 +59,13 @@ public/              CNAME, favicon, optimized artwork
 Accessibility includes labelled inputs, inline status/error announcements, visible focus indicators, a skip link, semantic landmarks, keyboard navigation, mobile menu labels, and reduced-motion support. No heavy animation framework is used. The dashboard and secondary views are lazy-loaded. Automated local tests validate form rules; production authentication and SQL policy verification require a configured Supabase project.
 
 An optional, feature-detected WebMCP tool `stage_waitlist_entry` can prepare the visible waitlist form for user review; it never submits it. Unsupported browsers continue normally. No supported native WebMCP validation context was available during implementation, so native tool registration is not claimed as verified.
+
+## Waitlist book download
+
+Both Get the book buttons open a modal waitlist form without navigation or scrolling. The popup supports Escape, a close button, backdrop dismissal, focus containment and focus restoration. The homepage signup section remains available. After a successful signup (including an already-registered email response), or a verified member lookup, the book flow attempts one automatic download. A download button remains available to retry. Ordinary waitlist signups also get the download button after success.
+
+The PDF source is `book/READ THE PLAYER - 1st Edition .pdf`. `src/config/book.js` imports it as a Vite asset, so production builds include the file with a versioned URL. Replace that source file to update the book. The downloader checks the PDF signature so a missing-file HTML fallback cannot be saved as a book.
+
+This is a marketing signup flow, not protected file access: a publicly hosted PDF can be shared directly. No payment or account creation is required to join the waitlist.
+
+The offer is now one month of free AI access at launch. Deploy the website and redeploy the `waitlist-welcome` Supabase function to update future welcome emails; already-sent emails are unchanged.

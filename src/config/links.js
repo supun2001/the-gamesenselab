@@ -1,8 +1,6 @@
 // Shared destinations for every section, the dashboard, and footer.
 export const links = {
   discord: 'https://discord.gg/wGbC3DuDV',
-  whop: 'https://whop.com/gamesense-lab',
-  book: 'https://whop.com/gamesense-lab/products/read-the-player-gaming-psychology-game-sense/',
   facebook: 'https://www.facebook.com/profile.php?id=61594301819333&locale=en_GB',
   instagram: 'https://www.instagram.com/the_gamesense_lab/',
   contact: 'mailto:contact@thegamesenselab.com',

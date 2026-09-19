@@ -3,6 +3,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { session } from '../lib/auth'
 import { supabase } from '../lib/supabase'
+import { openBookWaitlist } from '../lib/book-waitlist'
 import { links } from '../config/links'
 import ExternalLink from '../components/ExternalLink.vue'
 const router = useRouter(),
@@ -111,9 +112,9 @@ async function logout() {
         <span class="card-number">THE GAMESENSE LAB LIBRARY</span>
         <h3>READ THE PLAYER</h3>
         <p>The Psychology of Outsmarting Online Opponents.</p>
-        <ExternalLink class="text-link" :href="links.book" label="The book"
-          >GET THE BOOK</ExternalLink
-        >
+        <button type="button" class="text-link book-button" @click="openBookWaitlist">
+          GET THE BOOK
+        </button>
       </article>
       <article class="dashboard-card">
         <span class="card-number">BUILD WITH US</span>
@@ -126,3 +127,11 @@ async function logout() {
     </div>
   </section>
 </template>
+
+<style scoped>
+.book-button {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+</style>

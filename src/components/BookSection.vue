@@ -1,6 +1,6 @@
 <script setup>
-import ExternalLink from './ExternalLink.vue'
-import { artwork, links } from '../config/links'
+import { openBookWaitlist } from '../lib/book-waitlist'
+import { artwork } from '../config/links'
 const features = [
   'H.A.N.Z.O. Framework',
   '30 human behaviour patterns',
@@ -43,9 +43,7 @@ const features = [
       <ul class="book-features">
         <li v-for="feature in features" :key="feature">{{ feature }}</li>
       </ul>
-      <ExternalLink class="button primary" :href="links.book" label="The book"
-        >GET THE BOOK</ExternalLink
-      >
+      <button type="button" class="button primary" @click="openBookWaitlist">GET THE BOOK</button>
       <p class="authenticity">
         “This is not random AI-generated gaming advice. The ideas, examples and frameworks are based
         on my own competitive gaming experience. AI was only used for some visual artwork.”

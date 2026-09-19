@@ -101,7 +101,6 @@ const sections = [
       'Supabase: authentication, database storage, and user profiles.',
       'GitHub / GitHub Pages: website hosting and deployment.',
       'Cloudflare: DNS management. Any additional security, caching, or protection services depend on the deployed configuration.',
-      'Whop: digital-product access, memberships, payments, and delivery where applicable.',
       'Namecheap Private Email: account confirmation and email communications. Email delivery involves processing recipient addresses and message contents.',
       'Google Analytics: optional website usage measurement, loaded only after you allow analytics.',
       'Google Fonts: serving website typography, which involves standard request information such as IP addresses.',
@@ -115,7 +114,7 @@ const sections = [
   },
   {
     title: 'Payments and digital products',
-    text: 'Payments and digital-product access may be handled through Whop or another identified payment provider. GameSense Lab does not collect full payment-card details through this website’s forms. Payment providers process payment information under their own privacy terms, which should be reviewed when making a purchase.',
+    text: 'The book PDF is offered after joining the waitlist. If paid products are introduced, we will identify the payment provider before checkout. GameSense Lab does not collect full payment-card details through this website’s forms. Payment providers process payment information under their own privacy terms, which should be reviewed when making a purchase.',
   },
   {
     title: 'Waitlist updates and marketing',

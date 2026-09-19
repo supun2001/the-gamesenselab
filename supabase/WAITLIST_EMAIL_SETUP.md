@@ -2,7 +2,7 @@
 
 This is separate from the Auth confirmation template. New `public.waitlist` inserts queue a branded welcome email in the same transaction. A scheduled Edge Function sends through your existing Namecheap Private Email mailbox. The frontend needs no SMTP credentials or extra request. Existing waitlist entries are not automatically emailed.
 
-The message includes your wording, logo, offer conditions, and the Gamesense AI Coach Whop link. Preview `supabase/waitlist-welcome.html`. Edit the source in `supabase/functions/waitlist-welcome/email.js`, then redeploy the function to change future emails. Do not put this email in **Confirm signup**.
+The message includes your wording, logo, offer conditions, and the GameSense Lab Discord link. Preview `supabase/waitlist-welcome.html`. Edit the source in `supabase/functions/waitlist-welcome/email.js`, then redeploy the function to change future emails. Do not put this email in **Confirm signup**.
 
 ## 1. Add the queue
 

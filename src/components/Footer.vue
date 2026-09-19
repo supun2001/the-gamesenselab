@@ -29,8 +29,7 @@ function backToTop() {
         ><ExternalLink :href="links.contact" label="Contact details">Contact</ExternalLink
         ><ExternalLink :href="links.discord" label="Discord">Discord</ExternalLink
         ><ExternalLink :href="links.instagram" label="Instagram">Instagram</ExternalLink
-        ><ExternalLink :href="links.facebook" label="Facebook">Facebook</ExternalLink
-        ><ExternalLink :href="links.whop" label="Whop">Whop</ExternalLink>
+        ><ExternalLink :href="links.facebook" label="Facebook">Facebook</ExternalLink>
       </nav>
     </div>
     <p v-for="disclaimer in publisherDisclaimers" :key="disclaimer" class="disclaimer">

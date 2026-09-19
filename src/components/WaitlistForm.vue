@@ -1,10 +1,32 @@
 <script setup>
-import { reactive, ref, watch, onMounted, onUnmounted } from 'vue'
+import { computed, reactive, ref, watch, onMounted, onUnmounted } from 'vue'
+import { bookWaitlistOpen } from '../lib/book-waitlist'
+import { bookPdfUrl } from '../config/book'
+import { downloadBook } from '../lib/book-download'
 import { analytics } from '../lib/analytics-state'
 import { session, authReady } from '../lib/auth'
 import { registerWaitlistTool } from '../lib/webmcp'
 import { supabase, configurationMessage } from '../lib/supabase'
 import { games, waitlistPayload, validateWaitlist } from '../lib/validation'
+const props = defineProps({ modal: Boolean })
+const bookRequested = computed(() => props.modal)
+const hintId = computed(() => (props.modal ? 'book-riot-id-hint' : 'riot-id-hint'))
+const downloading = ref(false)
+const downloadMessage = ref('')
+let attemptedDownload = false
+async function getBook() {
+  if (!success.value || downloading.value) return
+  downloading.value = true
+  downloadMessage.value = ''
+  try {
+    await downloadBook(bookPdfUrl)
+    downloadMessage.value = 'Your PDF download has started. You can download it again below.'
+  } catch (failure) {
+    downloadMessage.value = failure.message || 'The download failed. Please try again.'
+  } finally {
+    downloading.value = false
+  }
+}
 const form = reactive({
   first_name: '',
   email: '',
@@ -17,6 +39,12 @@ const loading = ref(false),
   error = ref(''),
   success = ref(false),
   checking = ref(true)
+watch([success, checking, bookRequested], ([joined, busy, requested]) => {
+  if (joined && !busy && requested && !attemptedDownload) {
+    attemptedDownload = true
+    getBook()
+  }
+})
 let identityVersion = 0
 let unregister = () => {}
 watch(
@@ -24,6 +52,8 @@ watch(
   async () => {
     const version = ++identityVersion
     success.value = false
+    attemptedDownload = false
+    downloadMessage.value = ''
     error.value = ''
     checking.value = true
     await authReady
@@ -44,10 +74,11 @@ watch(
 )
 onMounted(() => {
   watch(
-    [checking, success],
-    ([busy, joined]) => {
+    [checking, success, bookWaitlistOpen],
+    ([busy, joined, popupOpen]) => {
       unregister()
-      unregister = !busy && !joined ? registerWaitlistTool(form) : () => {}
+      unregister =
+        !props.modal && !popupOpen && !busy && !joined ? registerWaitlistTool(form) : () => {}
     },
     { immediate: true },
   )
@@ -85,14 +116,17 @@ async function submit() {
 }
 </script>
 <template>
-  <section id="waitlist" class="waitlist-section">
-    <div class="container waitlist-layout">
-      <div class="waitlist-copy">
+  <section
+    :id="modal ? undefined : 'waitlist'"
+    :class="modal ? 'modal-waitlist' : 'waitlist-section'"
+  >
+    <div :class="modal ? 'modal-waitlist-layout' : 'container waitlist-layout'">
+      <div v-if="!modal" class="waitlist-copy">
         <p class="eyebrow">YOUR NEXT ADVANTAGE STARTS HERE</p>
-        <h2>JOIN EARLY.<br />GET <span class="gold">3 MONTHS FREE.</span></h2>
+        <h2>JOIN EARLY.<br />GET <span class="gold">1 MONTH FREE.</span></h2>
         <p>
-          Join the waitlist and stay with us until launch to receive your first 3 months of AI
-          access free.
+          Join the waitlist and stay with us until launch to receive your first 1 month of AI access
+          free.
         </p>
         <ul class="benefit-list">
           <li>Weekly development updates</li>
@@ -103,6 +137,10 @@ async function submit() {
         <span class="small-label">FIRST RELEASE: VALORANT <span class="gold">↗</span></span>
       </div>
       <div class="waitlist-panel">
+        <p v-if="bookRequested && !success" class="book-waitlist-message" role="status">
+          Join the waiting list to get READ THE PLAYER. After you successfully join, your PDF will
+          download automatically.
+        </p>
         <div class="form-header">
           <span class="small-label">RESERVE YOUR PLACE</span
           ><span class="gold" aria-hidden="true">✳</span>
@@ -114,6 +152,19 @@ async function submit() {
           <span class="success-check" aria-hidden="true">✓</span>
           <h3>You’re on the list.</h3>
           <p>Your place is saved. We’ll email you with launch updates.</p>
+          <div class="book-download-panel">
+            <button
+              v-if="bookPdfUrl"
+              type="button"
+              class="button primary"
+              :disabled="downloading"
+              @click="getBook"
+            >
+              {{ downloading ? 'DOWNLOADING…' : 'DOWNLOAD THE BOOK PDF' }}
+            </button>
+            <p v-else>The book PDF is being prepared. Your waitlist place is saved.</p>
+            <p v-if="downloadMessage" role="status">{{ downloadMessage }}</p>
+          </div>
           <RouterLink v-if="session" class="button secondary" to="/dashboard"
             >GO TO DASHBOARD ↗</RouterLink
           >
@@ -158,7 +209,7 @@ async function submit() {
                   placeholder="e.g. Hanzo"
                   maxlength="80"
                   autocomplete="off"
-                  aria-describedby="riot-id-hint"
+                  :aria-describedby="hintId"
                 />
               </label>
               <label
@@ -171,12 +222,12 @@ async function submit() {
                   autocomplete="off"
                   autocapitalize="off"
                   spellcheck="false"
-                  aria-describedby="riot-id-hint"
+                  :aria-describedby="hintId"
                 />
               </label>
             </template>
           </div>
-          <p v-if="form.main_game === 'VALORANT'" id="riot-id-hint" class="form-note">
+          <p v-if="form.main_game === 'VALORANT'" :id="hintId" class="form-note">
             Your Riot ID is your name + #tagline, for example Hanzo#EUW. Enter both fields or leave
             both blank.
           </p>
@@ -194,3 +245,32 @@ async function submit() {
     </div>
   </section>
 </template>
+
+<style scoped>
+.modal-waitlist .waitlist-panel {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+.modal-waitlist .form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 560px) {
+  .modal-waitlist .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.book-waitlist-message {
+  border-left: 2px solid var(--gold);
+  padding-left: 14px;
+  color: #f0f0eb;
+  font-size: 14px;
+}
+.book-download-panel {
+  margin-block: 20px;
+}
+.book-download-panel p {
+  margin-top: 12px;
+}
+</style>

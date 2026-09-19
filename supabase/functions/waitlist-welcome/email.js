@@ -1,5 +1,5 @@
 export const subject = 'You’re on the GameSense Lab AI Coach waitlist!'
-export const communityUrl = 'https://whop.com/gamesense-lab/gamesense-ai-coach/'
+export const communityUrl = 'https://discord.gg/wGbC3DuDV'
 export const text = `Hi there,
 
 You’re officially on the GameSense Lab AI Coach waitlist.
@@ -9,7 +9,7 @@ We’re currently building the first version of our AI-powered gameplay coaching
 As an early supporter, you’ll also be able to follow our development updates, feature previews, and beta progress through the GameSense Lab community.
 
 Special early-access offer:
-If you join the GameSense Lab community and stay with us until launch, you’ll receive your first 3 months of AI access FREE.
+If you join the GameSense Lab community and stay with us until launch, you’ll receive your first 1 month of AI access FREE.
 
 Join here:
 ${communityUrl}
@@ -37,7 +37,7 @@ export const html = `<!doctype html>
 <p>You’re officially on the <strong>GameSense Lab AI Coach waitlist</strong>.</p>
 <p>We’re currently building the first version of our AI-powered gameplay coaching system, starting with <strong>VALORANT</strong>. When the product is released, we’ll let you know by email so you can be one of the first to try it.</p>
 <p>As an early supporter, you’ll also be able to follow our development updates, feature previews, and beta progress through the GameSense Lab community.</p>
-<p style="padding:18px;border:1px solid #504326;"><strong style="color:#d6ad60;">Special early-access offer:</strong><br>If you join the GameSense Lab community and stay with us until launch, you’ll receive your <strong>first 3 months of AI access FREE</strong>.</p>
+<p style="padding:18px;border:1px solid #504326;"><strong style="color:#d6ad60;">Special early-access offer:</strong><br>If you join the GameSense Lab community and stay with us until launch, you’ll receive your <strong>first 1 month of AI access FREE</strong>.</p>
 <p style="margin:28px 0;"><a href="${communityUrl}" style="display:inline-block;background:#d6ad60;color:#080908;padding:16px 22px;text-decoration:none;font-size:14px;font-weight:bold;">JOIN THE COMMUNITY ↗</a></p>
 <p style="font-size:13px;overflow-wrap:anywhere;">Join here:<br><a href="${communityUrl}" style="color:#d6ad60;word-break:break-all;">${communityUrl}</a></p>
 <p>Thanks for being part of the beginning.</p>

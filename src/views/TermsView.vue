@@ -23,7 +23,7 @@ const sections = [
   },
   {
     title: 'Refunds and the early-access offer',
-    text: 'Insert a clear refund and cancellation policy consistent with the sales platform and applicable consumer rights. The waitlist offer describes three months of AI access at launch for members who stay until launch; define eligibility, start dates, access limits, and fulfilment before launch. Joining does not charge you or start a subscription.',
+    text: 'Insert a clear refund and cancellation policy consistent with the sales platform and applicable consumer rights. The waitlist offer describes one month of AI access at launch for members who stay until launch; define eligibility, start dates, access limits, and fulfilment before launch. Joining does not charge you or start a subscription.',
   },
   {
     title: 'Intellectual property',

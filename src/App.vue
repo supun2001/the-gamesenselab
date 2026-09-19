@@ -1,5 +1,7 @@
 <script setup>
 import AnalyticsConsent from './components/AnalyticsConsent.vue'
+import BookWaitlistModal from './components/BookWaitlistModal.vue'
+import { bookWaitlistOpen } from './lib/book-waitlist'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 function focusMain() {
@@ -12,4 +14,5 @@ function focusMain() {
   <main id="main" tabindex="-1"><RouterView /></main>
   <Footer />
   <AnalyticsConsent />
+  <BookWaitlistModal v-if="bookWaitlistOpen" />
 </template>

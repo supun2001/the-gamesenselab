@@ -86,7 +86,7 @@ test('email includes the logo, offer conditions and correct community destinatio
   for (const body of [html, text]) {
     assert.ok(body.includes(communityUrl))
     assert.ok(body.includes('stay with us until launch'))
-    assert.ok(body.includes('first 3 months of AI access FREE'))
+    assert.ok(body.includes('first 1 month of AI access FREE'))
     assert.ok(body.includes('contact@thegamesenselab.com'))
     assert.ok(!body.includes('ConfirmationURL'))
   }
