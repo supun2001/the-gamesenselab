@@ -68,4 +68,4 @@ The PDF source is `book/READ THE PLAYER - 1st Edition .pdf`. `src/config/book.js
 
 This is a marketing signup flow, not protected file access: a publicly hosted PDF can be shared directly. No payment or account creation is required to join the waitlist.
 
-The offer is now one month of free AI access at launch. Deploy the website and redeploy the `waitlist-welcome` Supabase function to update future welcome emails; already-sent emails are unchanged.
+Email templates offer the first 1 month of AI access free to people who join the GameSense Lab community and stay until launch. Redeploy the `waitlist-welcome` Supabase function and copy `supabase/confirm-signup.html` into Supabase’s Confirm signup template to update future emails; already-sent emails are unchanged.

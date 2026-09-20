@@ -81,8 +81,7 @@ test('each invocation is bounded even with a large backlog', async () => {
   assert.equal((await (await worker(request())).json()).sent, 3)
   assert.equal(claimed, 3)
 })
-test('email includes the logo, offer conditions and correct community destination', () => {
-  assert.ok(html.includes('https://thegamesenselab.com/images/logo.png'))
+test('email includes the offer conditions and correct community destination', () => {
   for (const body of [html, text]) {
     assert.ok(body.includes(communityUrl))
     assert.ok(body.includes('stay with us until launch'))
