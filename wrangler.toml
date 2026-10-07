@@ -1,0 +1,6 @@
+name = "altheia-web"
+compatibility_date = "2026-10-07"
+pages_build_output_dir = "dist"
+
+[vars]
+FORMS_ENABLED = "false"

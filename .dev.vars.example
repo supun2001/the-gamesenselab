@@ -1,0 +1,7 @@
+# Copy to .dev.vars for local Cloudflare Pages testing. Never commit real values.
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+TURNSTILE_SECRET_KEY=
+RATE_LIMIT_SECRET=
+ALLOWED_ORIGIN=http://localhost:8788
+FORMS_ENABLED=false

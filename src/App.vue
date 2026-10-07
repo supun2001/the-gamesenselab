@@ -1,18 +1,19 @@
-<script setup>
-import AnalyticsConsent from './components/AnalyticsConsent.vue'
-import BookWaitlistModal from './components/BookWaitlistModal.vue'
-import { bookWaitlistOpen } from './lib/book-waitlist'
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer.vue'
-function focusMain() {
-  document.getElementById('main')?.focus()
-  document.getElementById('main')?.scrollIntoView()
-}
+<script setup lang="ts">
+import { nextTick, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import SiteHeader from './components/SiteHeader.vue'
+import SiteFooter from './components/SiteFooter.vue'
+const route = useRoute()
+watch(
+  () => route.path,
+  async () => {
+    await nextTick()
+    document.getElementById('main')?.focus({ preventScroll: true })
+  },
+)
 </script>
 <template>
-  <a class="skip-link" href="#main" @click.prevent="focusMain">Skip to content</a><Navbar />
+  <a class="skip-link" href="#main">Skip to content</a><SiteHeader />
   <main id="main" tabindex="-1"><RouterView /></main>
-  <Footer />
-  <AnalyticsConsent />
-  <BookWaitlistModal v-if="bookWaitlistOpen" />
+  <SiteFooter />
 </template>
