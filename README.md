@@ -63,6 +63,8 @@ Verify with staging credentials that anonymous/authenticated roles cannot read, 
 
 Use **Cloudflare Pages**, which runs the repository's `functions/` folder. Static GitHub Pages cannot run these server endpoints. The previous GitHub auto-deploy workflow is now validation-only, so a commit does not overwrite the old live site unexpectedly.
 
+Create a **Pages** project, not a Workers project. Workers Builds defaults to `npx wrangler deploy`; that command fails here with “Missing entry-point to Worker script or to assets directory” because this repository has a Pages `wrangler.toml` and Pages Functions. In Cloudflare's Create an app flow, choose **Continue to Pages → Connect to Git**. Do not attach this repository to the existing `the-gamesenselab` Worker build.
+
 1. Create a Pages project using this repository. Build command: `npm run build`. Output directory: `dist`. Set Node version to 24.
 2. Configure a Turnstile widget for the exact production hostname. Use a separate widget for staging/preview. Set browser build variables `VITE_TURNSTILE_SITE_KEY` and `VITE_SITE_URL` (the approved HTTPS origin with no path).
 3. Set server secrets in Pages Settings: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET_KEY`, `RATE_LIMIT_SECRET` (a long random value). Never prefix secrets with `VITE_`.
