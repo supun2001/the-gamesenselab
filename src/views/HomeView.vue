@@ -46,7 +46,7 @@ const values = [
     <div class="shell landing-hero-inner">
       <div class="landing-copy">
         <p class="eyebrow">
-          FREYA BY ALTHEIA <span class="landing-kicker-line" aria-hidden="true"></span> PROTOTYPE
+          FREYA BY AVARAXIA LABS <span class="landing-kicker-line" aria-hidden="true"></span> PROTOTYPE
           BUILT
         </p>
         <h1 id="landing-title">Meet Freya.</h1>

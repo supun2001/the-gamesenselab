@@ -61,7 +61,7 @@ await writeFile(
 )
 await writeFile(
   'dist/404.html',
-  base.replace(/<title>.*?<\/title>/, '<title>Page not found — Altheia</title>'),
+  base.replace(/<title>.*?<\/title>/, '<title>Page not found — Avaraxia Labs</title>'),
 )
 console.log(
   domain

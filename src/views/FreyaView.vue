@@ -7,7 +7,7 @@ import { features } from '../config/site'
 </script>
 <template>
   <section class="page-hero shell">
-    <p class="eyebrow">MEET FREYA / BY ALTHEIA</p>
+    <p class="eyebrow">MEET FREYA / BY AVARAXIA LABS</p>
     <h1>A little more context.<br /><em>A different way to grow.</em></h1>
     <p class="lead">
       Your gaming companion and coach, being built around the decisions that shape your play—and the

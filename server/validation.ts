@@ -1,6 +1,6 @@
 export type FormKind = 'waitlist' | 'team' | 'contact'
 export const kinds: FormKind[] = ['waitlist', 'team', 'contact']
-export const consentVersion = 'altheia-updates-v1'
+export const consentVersion = 'avaraxia-labs-updates-v1'
 const games = ['CS2', 'VALORANT', 'League of Legends', 'Dota 2', 'Fortnite', 'Other']
 const categories = [
   'General',
@@ -75,7 +75,7 @@ export function validate(
       level: string('level', 100) || null,
       challenge: string('challenge', 2000, true),
       contact_permission: true,
-      consent_version: 'altheia-team-contact-v1',
+      consent_version: 'avaraxia-labs-team-contact-v1',
     }
   }
   const category = string('category', 40, true)

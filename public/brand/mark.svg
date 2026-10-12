@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0B1020"/><defs><linearGradient id="m"><stop stop-color="#8CFFD6"/><stop offset="1" stop-color="#4FE1BE"/></linearGradient><linearGradient id="v"><stop stop-color="#CEC8FF"/><stop offset="1" stop-color="#917EF0"/></linearGradient></defs><path d="M11 49 27 17h12L22 49H11Z" fill="url(#m)"/><path d="M39 17h7l12 32H47L39 25Z" fill="url(#v)"/><path d="M31 11h12l-4 6H27l4-6Z" fill="#E4FBF5"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Avaraxia Labs">
+  <defs>
+    <linearGradient id="mint" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#52E5C6"/><stop offset="1" stop-color="#66F5C8"/></linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#B9A8FF"/><stop offset="1" stop-color="#9A86EF"/></linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0B1020"/>
+  <g transform="translate(9.5 12) scale(.07)">
+    <path d="M8 536 324 6v128L169 380l172-99-88 174Z" fill="url(#mint)"/>
+    <path d="M332 6 635 536 466 470 327 222l101 68-96-156Z" fill="url(#violet)"/>
+  </g>
+</svg>

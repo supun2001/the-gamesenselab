@@ -22,13 +22,22 @@ const founders = [
 ]
 </script>
 <template>
-  <section class="page-hero shell">
-    <p class="eyebrow">THIS IS ALTHEIA</p>
-    <h1>Built around how players think<br /><em>and teams improve.</em></h1>
-    <p class="lead">
-      We bring competitive gaming experience, software engineering and business strategy together
-      around one question: how can we make learning from a game more useful?
-    </p>
+  <section class="page-hero shell about-hero">
+    <div>
+      <p class="eyebrow">THIS IS AVARAXIA LABS</p>
+      <h1>Built around how players think<br /><em>and teams improve.</em></h1>
+      <p class="lead">
+        We bring competitive gaming experience, software engineering and business strategy together
+        around one question: how can we make learning from a game more useful?
+      </p>
+    </div>
+    <img
+      class="about-logo"
+      src="/brand/avaraxia-labs-logo.png"
+      alt="Avaraxia Labs logo"
+      width="260"
+      height="260"
+    />
   </section>
   <section class="section shell about-story">
     <p class="eyebrow">OUR POINT OF VIEW</p>

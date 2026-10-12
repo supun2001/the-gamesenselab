@@ -171,7 +171,7 @@ async function submit() {
     >
     <label v-if="kind === 'team'" class="checkbox-label"
       ><input v-model="data.permission" type="checkbox" required /><span
-        >I give Altheia permission to contact me about team testing and coaching opportunities.
+        >I give Avaraxia Labs permission to contact me about team testing and coaching opportunities.
         Please don’t include teammates’ personal details.</span
       ></label
     >

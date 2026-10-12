@@ -1,6 +1,6 @@
-# Altheia · Freya
+# Avaraxia Labs · Freya
 
-A responsive pre-launch website for **Altheia**, built with Vue 3, TypeScript, Vite, Vue Router and Tailwind CSS. Freya is presented as a prototype-stage AI game companion and coach. No gameplay AI provider, analytics SDK, account system, checkout or payment collection is connected.
+A responsive pre-launch website for **Avaraxia Labs**, built with Vue 3, TypeScript, Vite, Vue Router and Tailwind CSS. Freya is presented as a prototype-stage AI game companion and coach. No gameplay AI provider, analytics SDK, account system, checkout or payment collection is connected.
 
 ## Run locally
 
@@ -28,7 +28,7 @@ Home `/`, Freya `/freya`, Team Coaching `/team-coaching`, Pricing `/pricing`, Ro
 
 Branding, links, demo URL, feature statuses, founder approval placeholders, pricing and launch flags: `src/config/site.ts`. Route titles/descriptions: `src/config/pages.ts`. Theme tokens and responsive styles: `src/assets/styles/main.css` (including Tailwind v4). All unknown feature capabilities are labelled Planned for launch. The prototype as a whole is confirmed; no individual capability is claimed as publicly available.
 
-The current landing hero follows the supplied screenshot. Its original, generated background is `public/brand/freya-hero.webp`. The geometric mark, text wordmark, favicon and sharing image are **temporary design placeholders**, not reproductions of an approved logo. Replace `public/brand/` assets and set `site.wordmark` and `site.mark` to approved asset URLs when final branding is available. The video poster is intentional; no player or play button appears until `site.demoVideo` is configured. The default media policy supports self-hosted video. Add a reviewed provider origin to `_headers` if hosting video elsewhere.
+The current landing hero follows the supplied screenshot. Its original, generated background is `public/brand/freya-hero.webp`. The supplied Avaraxia Labs logo is stored at `public/brand/avaraxia-labs-logo.png`; the header displays its emblem with live text, and the favicon and sharing image use a simplified SVG rendition of that emblem. The video poster is intentional; no player or play button appears until `site.demoVideo` is configured. The default media policy supports self-hosted video. Add a reviewed provider origin to `_headers` if hosting video elsewhere.
 
 ## Secure form flow
 
@@ -46,7 +46,7 @@ No confirmation email is sent and no email delivery is claimed. Contact/team mes
 
 ## Supabase setup
 
-Use a staging project first. Apply `supabase/migrations/20261007_altheia_forms.sql` for a fresh Altheia setup. Previous implementation migrations and functions were removed from the working tree; their history remains in Git. Do not replay them into a fresh Altheia environment.
+Use a staging project first. Apply `supabase/migrations/20261007_altheia_forms.sql` for a fresh setup. The `altheia_` database identifiers are retained for compatibility with existing records and endpoints; they are not the public brand name. Previous implementation migrations and functions were removed from the working tree; their history remains in Git. Do not replay them into a fresh environment.
 
 The new migration is additive and does not alter or delete historical records. For an existing Supabase project, verify its migration history before applying the new migration. It creates:
 
@@ -88,7 +88,7 @@ Use the printed local origin for `ALLOWED_ORIGIN`. Production Turnstile validati
 
 ## Release blockers / outstanding configuration
 
-- Approved Altheia wordmark, mark and brand board; replace temporary brand assets.
+- Confirm whether a separate brand board or alternate logo sizes are needed beyond the supplied Avaraxia Labs logo.
 - Real production domain; configure `VITE_SITE_URL`, `ALLOWED_ORIGIN`, DNS and TLS.
 - Supabase staging/live projects, applied migration, server secret and verified RLS.
 - Turnstile widget/sitekey, secret and hostname configuration.

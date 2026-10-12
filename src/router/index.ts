@@ -32,7 +32,7 @@ const router = createRouter({
 })
 router.afterEach((to) => {
   const page = pages.find((item) => item.path === to.path)
-  document.title = page?.title || 'Page not found — Altheia'
+  document.title = page?.title || 'Page not found — Avaraxia Labs'
   const set = (selector: string, value: string) =>
     document.querySelector(selector)?.setAttribute('content', value)
   set('meta[name="description"]', page?.description || 'This page could not be found.')

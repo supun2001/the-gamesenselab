@@ -1,12 +1,12 @@
 export type FeatureStatus = 'Prototype' | 'Planned for launch' | 'Future research'
 export const site = {
-  name: 'Altheia',
+  name: 'Avaraxia Labs',
   product: 'Freya',
   tagline: 'Read the game. Rise together.',
-  // No assumed domain, legal identity or supplied assets. Set these before public release.
+  // The domain and legal identity still need approval before public release.
   url: import.meta.env?.VITE_SITE_URL?.replace(/\/$/, '') || '',
-  wordmark: '',
-  mark: '',
+  wordmark: '/brand/avaraxia-labs-logo.png',
+  mark: '/brand/mark.svg',
   socialImage: '/brand/social-preview.png',
   demoVideo: '',
   privacyContact: '',
@@ -19,7 +19,7 @@ export const site = {
     annualPaymentsEnabled: false,
   },
   links: { discord: '', instagram: '' },
-  consentVersion: 'altheia-updates-v1',
+  consentVersion: 'avaraxia-labs-updates-v1',
 }
 export const navigation = [
   { label: 'Freya', to: '/freya' },
@@ -176,7 +176,7 @@ export const roadmap = [
 export const faq = [
   [
     'What is Freya?',
-    'Freya by Altheia is an AI game companion and coach being developed to help players understand decisions, recognise opponent patterns and improve how they work together.',
+    'Freya by Avaraxia Labs is an AI game companion and coach being developed to help players understand decisions, recognise opponent patterns and improve how they work together.',
   ],
   [
     'Is Freya available now?',
@@ -228,6 +228,6 @@ export const faq = [
   ],
   [
     'How can I request removal of my information?',
-    'Use the Contact page and choose Privacy request. The founders will use your email to respond to the request. Before public release, Altheia must confirm its privacy contact, retention policy and request-handling process; the Privacy page is currently a draft.',
+    'Use the Contact page and choose Privacy request. The founders will use your email to respond to the request. Before public release, Avaraxia Labs must confirm its privacy contact, retention policy and request-handling process; the Privacy page is currently a draft.',
   ],
 ]

@@ -29,7 +29,7 @@ function escape() {
 <template>
   <header :class="['site-header', { 'home-header': route.path === '/' }]" @keydown.esc="escape">
     <div class="shell header-inner">
-      <RouterLink class="brand-link" to="/" aria-label="Altheia home"><Brand /></RouterLink>
+      <RouterLink class="brand-link" to="/" aria-label="Avaraxia Labs home"><Brand /></RouterLink>
       <nav
         id="site-navigation"
         aria-label="Main navigation"

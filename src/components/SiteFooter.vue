@@ -5,7 +5,7 @@ import Brand from './Brand.vue'
   <footer class="site-footer">
     <div class="shell footer-grid">
       <div>
-        <RouterLink to="/" aria-label="Altheia home"><Brand /></RouterLink>
+        <RouterLink to="/" aria-label="Avaraxia Labs home"><Brand /></RouterLink>
         <p>Read the game.<br />Rise together.</p>
         <span class="tiny">A new perspective on play.</span>
       </div>
@@ -17,7 +17,7 @@ import Brand from './Brand.vue'
         ><RouterLink to="/roadmap">Roadmap</RouterLink>
       </div>
       <div>
-        <h2>Altheia</h2>
+        <h2>Avaraxia Labs</h2>
         <RouterLink to="/about">About</RouterLink><RouterLink to="/faq">FAQ</RouterLink
         ><RouterLink to="/contact">Contact</RouterLink>
       </div>
@@ -29,7 +29,7 @@ import Brand from './Brand.vue'
       </div>
     </div>
     <div class="shell footer-bottom">
-      <span>© {{ new Date().getFullYear() }} Altheia</span
+      <span>© {{ new Date().getFullYear() }} Avaraxia Labs</span
       ><span>Independent of game publishers. Game names belong to their respective owners.</span>
       <nav aria-label="Legal">
         <RouterLink to="/privacy">Privacy · draft</RouterLink

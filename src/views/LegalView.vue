@@ -104,7 +104,7 @@ const privacy = computed(() => route.path === '/privacy')
       ><section>
         <h2>A pre-launch website</h2>
         <p>
-          Altheia is developing Freya. A working prototype exists, but the public product is not yet
+          Avaraxia Labs is developing Freya. A working prototype exists, but the public product is not yet
           available. This website provides information and collects interest. It does not currently
           perform gameplay analysis, sell subscriptions or process payments.
         </p>

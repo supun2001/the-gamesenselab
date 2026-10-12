@@ -75,7 +75,7 @@ export async function handleForm(
     request.headers.get('Origin') !== env.ALLOWED_ORIGIN ||
     new URL(request.url).origin !== env.ALLOWED_ORIGIN
   )
-    return response(403, 'Please submit from the Altheia website.')
+    return response(403, 'Please submit from the Avaraxia Labs website.')
   if (!request.headers.get('Content-Type')?.startsWith('application/json'))
     return response(415, 'Submit a JSON form.')
   const kind = form as FormKind
@@ -162,7 +162,7 @@ export async function handleForm(
         ? 'You’re on the list. We’ll contact you when early access is ready.'
         : kind === 'team'
           ? 'Your team interest has been received. We’ll contact you about testing opportunities.'
-          : 'Your enquiry has been received. The Altheia team can review it securely.',
+          : 'Your enquiry has been received. The Avaraxia Labs team can review it securely.',
     )
   } catch (error) {
     if (error instanceof ValidationError) return response(400, error.message)

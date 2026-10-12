@@ -79,7 +79,7 @@ test('records optional marketing consent version and timestamp', async () => {
     'waitlist',
     service.fakeFetch,
   )
-  assert.equal(service.stored[0]?.consent_version, 'altheia-updates-v1')
+  assert.equal(service.stored[0]?.consent_version, 'avaraxia-labs-updates-v1')
   assert.ok(Number.isFinite(Date.parse(String(service.stored[0]?.consent_at))))
 })
 test('duplicate waitlist uses conflict-ignore semantics and identical responses', async () => {
