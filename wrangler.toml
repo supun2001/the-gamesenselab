@@ -1,6 +1,20 @@
-name = "altheia-web"
+name = "avaraxia-labs"
+main = "server/worker.ts"
 compatibility_date = "2026-10-07"
-pages_build_output_dir = "dist"
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
+not_found_handling = "404-page"
+run_worker_first = ["/api", "/api/*"]
+
+[observability]
+enabled = true
+
+[observability.traces]
+enabled = true
+head_sampling_rate = 0.01
 
 [vars]
 FORMS_ENABLED = "false"
+ALLOWED_ORIGIN = "https://avaraxialabs.com"

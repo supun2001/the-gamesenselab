@@ -36,7 +36,7 @@ The current landing hero follows the supplied screenshot. Its original, generate
 - `POST /api/team`: representative name/email, game, size, optional level, challenge and required permission to contact the representative.
 - `POST /api/contact`: name, email, category and message, saved as a genuine enquiry for founder review.
 
-Cloudflare Pages Functions validate the origin, method, content type, body size and field values, normalise email, enforce database-backed rate limits, validate Cloudflare Turnstile (success, hostname and action), then insert permitted fields in Supabase. Tokens are reset after every attempted submission. The UI retains inputs on failure.
+Cloudflare Worker endpoints validate the origin, method, content type, body size and field values, normalise email, enforce database-backed rate limits, validate Cloudflare Turnstile (success, hostname and action), then insert permitted fields in Supabase. Tokens are reset after every attempted submission. The UI retains inputs on failure.
 
 Supabase service credentials exist only in the server environment. New tables have RLS enabled with no browser policies and explicit revoked public/anon/authenticated permissions. The secret service role is the only API actor. The database function atomically increments request counters; failures fail closed. Rate limits are 20 attempts per IP per minute and 5 per email/form per hour. Identifiers are HMAC hashes using `RATE_LIMIT_SECRET`. Limits are preliminary abuse controls, not a complete defence against distributed attacks; review observed traffic before scaling.
 
@@ -61,17 +61,14 @@ Verify with staging credentials that anonymous/authenticated roles cannot read, 
 
 ## Cloudflare deployment
 
-Use **Cloudflare Pages**, which runs the repository's `functions/` folder. Static GitHub Pages cannot run these server endpoints. The previous GitHub auto-deploy workflow is now validation-only, so a commit does not overwrite the old live site unexpectedly.
+Use the existing **avaraxia-labs** Cloudflare Worker. `server/worker.ts` handles `/api/*`; Workers Static Assets serves the built `dist` directory, route metadata, headers and custom 404 page.
 
-Create a **Pages** project, not a Workers project. Workers Builds defaults to `npx wrangler deploy`; that command fails here with “Missing entry-point to Worker script or to assets directory” because this repository has a Pages `wrangler.toml` and Pages Functions. In Cloudflare's Create an app flow, choose **Continue to Pages → Connect to Git**. Do not attach this repository to the existing `the-gamesenselab` Worker build.
-
-1. Create a Pages project using this repository. Build command: `npm run build`. Output directory: `dist`. Set Node version to 24.
-2. Configure a Turnstile widget for the exact production hostname. Use a separate widget for staging/preview. Set browser build variables `VITE_TURNSTILE_SITE_KEY` and `VITE_SITE_URL` (the approved HTTPS origin with no path).
-3. Set server secrets in Pages Settings: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET_KEY`, `RATE_LIMIT_SECRET` (a long random value). Never prefix secrets with `VITE_`.
-4. Set server variable `ALLOWED_ORIGIN` to the exact site origin. Cross-origin requests are rejected; no wildcard CORS is enabled.
-5. Review all release blockers below, then change `FORMS_ENABLED` from `false` to `true` in `wrangler.toml` for the approved release. Keep staging configuration separate. The checked-in default fails closed.
-6. Deploy via Pages Git integration or `npm run deploy` after Cloudflare authentication. The CLI will ask you to select/create the Pages project. No production deployment has been performed automatically.
-7. Test real Turnstile + Supabase writes and the live legal/contact process. Verify direct loads and refreshes for every route. Metadata HTML is emitted per route; unknown routes use the custom noindex 404 page.
+1. Push this Workers migration to the connected GitHub repository. In Worker Settings → Builds, set build command `npm run build`, deploy command `npm run deploy`, and preview command `npx wrangler versions upload` (or disable preview builds).
+2. Set build variables `NODE_VERSION=24` and `VITE_SITE_URL=https://avaraxialabs.com`. Add `VITE_TURNSTILE_SITE_KEY` when enabling forms.
+3. Deploy and verify the website. The previous `wrangler pages deploy` command targets the deleted Pages project and must be replaced.
+4. In Cloudflare DNS, remove only the obsolete CNAME records for `avaraxialabs.com` and `www.avaraxialabs.com` pointing to `altheia-web.pages.dev`. Preserve email records. Then open Worker → Domains → Add domain and attach `avaraxialabs.com`, plus `www.avaraxialabs.com` if needed. Cloudflare manages the new domain records and certificates.
+5. Before enabling forms, configure Supabase and Turnstile and set Worker secrets `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET_KEY`, and `RATE_LIMIT_SECRET`. Never prefix secrets with `VITE_`. `ALLOWED_ORIGIN` is configured in `wrangler.toml`.
+6. Keep `FORMS_ENABLED=false` until the release checks below are complete. Validate real form writes before accepting registrations.
 
 For server testing locally:
 
@@ -79,7 +76,7 @@ For server testing locally:
 cp .dev.vars.example .dev.vars
 # Configure a staging Supabase project and Turnstile test credentials.
 npm run build
-npm run pages:dev
+npm run worker:dev
 ```
 
 Use the printed local origin for `ALLOWED_ORIGIN`. Production Turnstile validation requires its returned hostname and action to match. If using official dummy Turnstile keys, use a controlled test harness with a matching test hostname/action rather than weakening the production check. Our unit tests inject verifier responses; they do not make real service calls.

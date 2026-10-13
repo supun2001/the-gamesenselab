@@ -17,5 +17,5 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
-# Deploy the repository using Cloudflare Pages Git integration.
+# Deploy the repository using the avaraxia-labs Worker Git integration.
 # GitHub Pages cannot run the server endpoints and must not host the production forms.

@@ -16,7 +16,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.vue",
-    "functions/**/*.ts",
     "server/**/*.ts",
     "vite.config.ts"
   ]
