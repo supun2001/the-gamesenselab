@@ -16,5 +16,5 @@ enabled = true
 head_sampling_rate = 0.01
 
 [vars]
-FORMS_ENABLED = "false"
+FORMS_ENABLED = "true"
 ALLOWED_ORIGIN = "https://avaraxialabs.com"

@@ -69,8 +69,20 @@ export async function handleForm(
     !env.RATE_LIMIT_SECRET ||
     !env.ALLOWED_ORIGIN ||
     env.FORMS_ENABLED !== 'true'
-  )
+  ) {
+    const required = [
+      'SUPABASE_URL',
+      'SUPABASE_SERVICE_ROLE_KEY',
+      'TURNSTILE_SECRET_KEY',
+      'RATE_LIMIT_SECRET',
+      'ALLOWED_ORIGIN',
+    ] as const
+    console.error('Form configuration unavailable', {
+      missing: required.filter((name) => !env[name]),
+      formsEnabled: env.FORMS_ENABLED === 'true',
+    })
     return response(503, 'Registrations and enquiries are not open yet. Please try again later.')
+  }
   if (
     request.headers.get('Origin') !== env.ALLOWED_ORIGIN ||
     new URL(request.url).origin !== env.ALLOWED_ORIGIN

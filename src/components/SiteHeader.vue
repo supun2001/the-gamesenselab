@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { navigation } from '../config/site'
+import { accountUser } from '../lib/supabase'
 import Brand from './Brand.vue'
 import Button from './Button.vue'
 const open = ref(false),
@@ -41,6 +42,7 @@ function escape() {
           :to="item.to"
           >{{ item.label }}</RouterLink
         >
+        <RouterLink to="/account">{{ accountUser ? 'My account' : 'Sign in' }}</RouterLink>
       </nav>
       <Button class="header-cta" to="/#waitlist"
         >Join the waitlist <span aria-hidden="true">↗</span></Button

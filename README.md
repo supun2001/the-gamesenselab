@@ -1,6 +1,6 @@
 # Avaraxia Labs · Freya
 
-A responsive pre-launch website for **Avaraxia Labs**, built with Vue 3, TypeScript, Vite, Vue Router and Tailwind CSS. Freya is presented as a prototype-stage AI game companion and coach. No gameplay AI provider, analytics SDK, account system, checkout or payment collection is connected.
+A responsive pre-launch website for **Avaraxia Labs**, built with Vue 3, TypeScript, Vite, Vue Router and Tailwind CSS. Freya is presented as a prototype-stage AI game companion and coach. No gameplay AI provider, checkout or payment collection is connected.
 
 ## Run locally
 
@@ -101,3 +101,11 @@ Use the printed local origin for `ALLOWED_ORIGIN`. Production Turnstile validati
 ## Verification scope
 
 Automated tests cover server validation, origin/body guards, bot proof, rate limiting, storage failures, duplicate-safe request semantics, consent recording, annual price calculations and access-policy declarations. They use mocked services and do not substitute for applying the migration, testing concurrent uniqueness on PostgreSQL, or real end-to-end production delivery.
+
+## Accounts
+
+`/account` uses Supabase Auth for email/password sign-in, registration, password recovery, and sign-out. Existing accounts are preserved. Profile reads and writes use the existing `user_profiles` table and its owner-only RLS policies. Accounts do not automatically join the waitlist or consent to marketing.
+
+Set production build variables `VITE_SUPABASE_URL=https://xhlvxxeaobztxohjuhko.supabase.co` and `VITE_SUPABASE_PUBLISHABLE_KEY` (public key only). In Supabase Authentication → URL Configuration, set Site URL to `https://avaraxialabs.com` and allow `https://avaraxialabs.com/account` as a redirect URL. Configure production SMTP for confirmation and recovery emails. Never include a server secret in `VITE_*`. The account page is excluded from the sitemap and has noindex metadata.
+
+`FORMS_ENABLED=true` is now configured in Wrangler; endpoints still reject requests when required server configuration is absent. Required runtime secrets are `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET_KEY`, and `RATE_LIMIT_SECRET`. The public Turnstile site key must be present during the build. Verify production submissions after deploying before announcing registrations.

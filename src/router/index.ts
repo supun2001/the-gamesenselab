@@ -12,6 +12,7 @@ const router = createRouter({
     { path: '/roadmap', component: () => import('../views/RoadmapView.vue') },
     { path: '/about', component: () => import('../views/AboutView.vue') },
     { path: '/faq', component: () => import('../views/FAQView.vue') },
+    { path: '/account', component: () => import('../views/AccountView.vue') },
     { path: '/contact', component: () => import('../views/ContactView.vue') },
     { path: '/privacy', component: () => import('../views/LegalView.vue') },
     { path: '/terms', component: () => import('../views/LegalView.vue') },
@@ -42,7 +43,7 @@ router.afterEach((to) => {
   set('meta[name="twitter:description"]', page?.description || '')
   set(
     'meta[name="robots"]',
-    !site.url || !page || ['/privacy', '/terms'].includes(to.path)
+    !site.url || !page || ['/privacy', '/terms', '/account'].includes(to.path)
       ? 'noindex, nofollow'
       : 'index, follow',
   )

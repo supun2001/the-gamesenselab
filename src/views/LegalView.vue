@@ -36,6 +36,16 @@ const privacy = computed(() => route.path === '/privacy')
         </p>
       </section>
       <section>
+        <h2>Accounts and profiles</h2>
+        <p>
+          Supabase Auth manages account email addresses, passwords, email confirmation and password
+          recovery. Your optional display name is stored in your profile. Signed-in users can read
+          and edit only their own profile. Authentication sessions are stored in your browser to
+          keep you signed in; signing out removes the local session. Creating an account does not
+          join the waitlist or give marketing consent.
+        </p>
+      </section>
+      <section>
         <h2>Why we use it</h2>
         <p>
           We use waitlist information to communicate about early access, team details to review
@@ -104,9 +114,9 @@ const privacy = computed(() => route.path === '/privacy')
       ><section>
         <h2>A pre-launch website</h2>
         <p>
-          Avaraxia Labs is developing Freya. A working prototype exists, but the public product is not yet
-          available. This website provides information and collects interest. It does not currently
-          perform gameplay analysis, sell subscriptions or process payments.
+          Avaraxia Labs is developing Freya. A working prototype exists, but the public product is
+          not yet available. This website provides information and collects interest. It does not
+          currently perform gameplay analysis, sell subscriptions or process payments.
         </p>
       </section>
       <section>

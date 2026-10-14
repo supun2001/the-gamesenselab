@@ -1,5 +1,10 @@
 export const pages = [
   {
+    path: '/account',
+    title: 'Your Account — Avaraxia Labs',
+    description: 'Sign in to your Avaraxia Labs account and manage your profile.',
+  },
+  {
     path: '/',
     title: 'Avaraxia Labs — Read the game. Rise together.',
     description:
