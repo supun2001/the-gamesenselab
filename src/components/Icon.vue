@@ -14,7 +14,19 @@ defineProps<{ name?: string }>()
     stroke-linejoin="round"
     aria-hidden="true"
   >
-    <template v-if="name === 'arrow'"><path d="M5 12h14m-6-6 6 6-6 6" /></template>
+    <template v-if="name === 'user'">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
+    </template>
+    <template v-else-if="name === 'lock'">
+      <rect x="5" y="10" width="14" height="11" rx="2" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" />
+    </template>
+    <template v-else-if="name === 'help'">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9a2.5 2.5 0 1 1 4 2c-1 .7-1.5 1-1.5 2M12 17h.01" />
+    </template>
+    <template v-else-if="name === 'arrow'"><path d="M5 12h14m-6-6 6 6-6 6" /></template>
     <template v-else-if="name === 'team'">
       <circle cx="12" cy="7" r="3" />
       <path d="M6 21v-3a6 6 0 0 1 12 0v3M3 6a3 3 0 0 0 0 6m18-6a3 3 0 0 1 0 6M2 20v-3m20 3v-3" />
