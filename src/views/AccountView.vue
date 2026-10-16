@@ -264,7 +264,7 @@ async function sendPasswordReset() {
         <span class="workspace-label">AVARAXIA LABS</span>
         <p>Read the game.<br />Rise together.</p>
         <button type="button" class="signout-link" :disabled="busy" @click="signOut">
-          Sign out <span aria-hidden="true">↗</span>
+          Sign out <Icon name="logout" />
         </button>
       </div>
     </aside>
@@ -302,7 +302,7 @@ async function sendPasswordReset() {
           >
         </header>
         <button type="button" class="mobile-signout signout-link" :disabled="busy" @click="signOut">
-          Sign out ↗
+          Sign out <Icon name="logout" />
         </button>
         <div v-if="selectedPanel === 'profile'" class="profile-banner">
           <span class="avatar avatar-large">{{ initials }}</span>
@@ -486,7 +486,7 @@ async function sendPasswordReset() {
   </section>
 </template>
 <style scoped>
-.mobile-signout {
+.signout-link.mobile-signout {
   display: none;
 }
 .account-hero.is-signed-in {
@@ -612,15 +612,29 @@ async function sendPasswordReset() {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  background: none;
-  border: 0;
-  padding: 0;
-  color: #a1aec5;
+  align-items: center;
+  gap: 12px;
+  min-height: 42px;
+  background: #ffffff03;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #c7d2e5;
   font-size: 12px;
   cursor: pointer;
 }
-.signout-link:hover {
+.signout-link:hover:not(:disabled) {
   color: #fff;
+  background: #ffffff09;
+  border-color: #c8d5ff40;
+}
+.signout-link .icon {
+  width: 16px;
+  height: 16px;
+}
+.signout-link:disabled {
+  opacity: 0.5;
+  cursor: wait;
 }
 .form-card.settings-content {
   min-width: 0;
@@ -801,8 +815,8 @@ async function sendPasswordReset() {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .mobile-signout {
-    display: block;
+  .signout-link.mobile-signout {
+    display: flex;
     width: auto;
     margin: 16px 0 0 auto;
   }
