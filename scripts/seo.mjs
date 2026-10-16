@@ -19,7 +19,9 @@ const escape = (value) =>
   value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;')
 const base = await readFile('dist/index.html', 'utf8')
 for (const page of pages) {
-  const noindex = !domain || ['/privacy', '/terms', '/account'].includes(page.path)
+  const noindex =
+    !domain ||
+    ['/privacy', '/terms', '/account', '/reset-password', '/email-confirmed'].includes(page.path)
   let html = base.replace(/<title>.*?<\/title>/, `<title>${escape(page.title)}</title>`)
   for (const [key, value] of [
     ['name="description"', page.description],
@@ -53,7 +55,12 @@ await writeFile(
   `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${
     domain
       ? pages
-          .filter((p) => !['/privacy', '/terms', '/account'].includes(p.path))
+          .filter(
+            (p) =>
+              !['/privacy', '/terms', '/account', '/reset-password', '/email-confirmed'].includes(
+                p.path,
+              ),
+          )
           .map((p) => `<url><loc>${domain}${p.path}</loc></url>`)
           .join('')
       : ''

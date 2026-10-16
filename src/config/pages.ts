@@ -1,5 +1,15 @@
 export const pages = [
   {
+    path: '/reset-password',
+    title: 'Reset Your Password — Avaraxia Labs',
+    description: 'Choose a new password for your Avaraxia Labs account.',
+  },
+  {
+    path: '/email-confirmed',
+    title: 'Email Confirmation — Avaraxia Labs',
+    description: 'Check your email confirmation and continue to your account.',
+  },
+  {
     path: '/account',
     title: 'Your Account — Avaraxia Labs',
     description: 'Sign in to your Avaraxia Labs account and manage your profile.',

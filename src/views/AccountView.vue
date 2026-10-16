@@ -64,7 +64,7 @@ async function submit() {
       message.value = 'Your password has been updated.'
     } else if (mode.value === 'reset') {
       const result = await supabase.auth.resetPasswordForEmail(address, {
-        redirectTo: `${window.location.origin}/account`,
+        redirectTo: `${window.location.origin}/reset-password`,
       })
       if (result.error) throw result.error
       message.value = 'If an account exists for this email, you’ll receive a password reset link.'
@@ -73,7 +73,7 @@ async function submit() {
         email: address,
         password: password.value,
         options: {
-          emailRedirectTo: `${window.location.origin}/account`,
+          emailRedirectTo: `${window.location.origin}/email-confirmed`,
           data: { display_name: displayName.value.trim() },
         },
       })
@@ -241,9 +241,7 @@ async function signOut() {
           <button v-if="mode !== 'signup'" type="button" @click="mode = 'signup'">
             Create an account
           </button>
-          <button v-if="mode !== 'reset'" type="button" @click="mode = 'reset'">
-            Forgot password?
-          </button>
+          <RouterLink to="/reset-password">Forgot password?</RouterLink>
         </div>
       </template>
       <p v-if="error" class="form-error" role="alert">{{ error }}</p>
@@ -266,7 +264,8 @@ async function signOut() {
   gap: 20px;
   margin-top: 24px;
 }
-.account-actions button {
+.account-actions button,
+.account-actions a {
   color: var(--mint, #63edc3);
   text-decoration: underline;
   background: none;
