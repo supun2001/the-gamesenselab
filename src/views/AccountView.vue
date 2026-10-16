@@ -5,6 +5,7 @@ import Button from '../components/Button.vue'
 const mode = ref<'login' | 'signup' | 'reset'>('login')
 const email = ref(''),
   password = ref(''),
+  confirmPassword = ref(''),
   displayName = ref('')
 const busy = ref(false),
   message = ref(''),
@@ -38,9 +39,19 @@ watch(mode, () => {
   message.value = ''
   error.value = ''
   password.value = ''
+  confirmPassword.value = ''
 })
 async function submit() {
   if (!supabase || busy.value) return
+  if (
+    mode.value === 'signup' &&
+    !passwordRecovery.value &&
+    password.value !== confirmPassword.value
+  ) {
+    message.value = ''
+    error.value = 'Passwords do not match. Please enter the same password in both fields.'
+    return
+  }
   busy.value = true
   message.value = ''
   error.value = ''
@@ -78,6 +89,7 @@ async function submit() {
       if (result.error) throw result.error
     }
     password.value = ''
+    confirmPassword.value = ''
   } catch {
     error.value =
       mode.value === 'login' && !passwordRecovery.value
@@ -199,6 +211,14 @@ async function signOut() {
               :autocomplete="
                 mode === 'signup' || passwordRecovery ? 'new-password' : 'current-password'
               "
+          /></label>
+          <label v-if="mode === 'signup' && !passwordRecovery"
+            >Confirm password<input
+              v-model="confirmPassword"
+              type="password"
+              required
+              minlength="8"
+              autocomplete="new-password"
           /></label>
           <p v-if="mode === 'signup'" class="form-note">
             Use at least 8 characters. Creating an account does not subscribe you to development
