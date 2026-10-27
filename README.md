@@ -109,3 +109,7 @@ Automated tests cover server validation, origin/body guards, bot proof, rate lim
 Set production build variables `VITE_SUPABASE_URL=https://xhlvxxeaobztxohjuhko.supabase.co` and `VITE_SUPABASE_PUBLISHABLE_KEY` (public key only). In Supabase Authentication → URL Configuration, set Site URL to `https://avaraxialabs.com` and allow `https://avaraxialabs.com/reset-password` and `https://avaraxialabs.com/email-confirmed` as redirect URLs (keep `/account` allowed for previously sent emails). Configure production SMTP for confirmation and recovery emails. Never include a server secret in `VITE_*`. The account page is excluded from the sitemap and has noindex metadata.
 
 `FORMS_ENABLED=true` is now configured in Wrangler; endpoints still reject requests when required server configuration is absent. Required runtime secrets are `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET_KEY`, and `RATE_LIMIT_SECRET`. The public Turnstile site key must be present during the build. Verify production submissions after deploying before announcing registrations.
+
+## Production readiness review
+
+See [the dated production readiness review](docs/production-readiness.md) for the nine-point security/deployment checklist, verified code controls, outstanding live checks, and rollback procedure. Passing the local build and tests does not clear the documented release blockers.

@@ -8,13 +8,13 @@ export interface Env {
   FORMS_ENABLED: string
 }
 type Fetcher = typeof fetch
-const response = (status: number, message: string) =>
+const response = (status: number, message: string, retryAfter = 60) =>
   new Response(JSON.stringify({ message }), {
     status,
     headers: {
       'Content-Type': 'application/json',
       'Cache-Control': 'no-store',
-      ...(status === 429 ? { 'Retry-After': '60' } : {}),
+      ...(status === 429 ? { 'Retry-After': String(retryAfter) } : {}),
     },
   })
 async function fingerprint(value: string, secret: string) {
@@ -77,7 +77,8 @@ export async function handleForm(
       'RATE_LIMIT_SECRET',
       'ALLOWED_ORIGIN',
     ] as const
-    console.error('Form configuration unavailable', {
+    console.error({
+      event: 'form_configuration_unavailable',
       missing: required.filter((name) => !env[name]),
       formsEnabled: env.FORMS_ENABLED === 'true',
     })
@@ -91,6 +92,7 @@ export async function handleForm(
   if (!request.headers.get('Content-Type')?.startsWith('application/json'))
     return response(415, 'Submit a JSON form.')
   const kind = form as FormKind
+  let stage: 'input' | 'rate_limit' | 'bot_verification' | 'storage' = 'input'
   try {
     const input = await boundedBody(request)
     const row = validate(kind, input)
@@ -109,6 +111,7 @@ export async function handleForm(
       'Content-Type': 'application/json',
     }
     const db = env.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/'
+    stage = 'rate_limit'
     for (const [value, limit, windowSeconds] of [
       [`ip:${ip}`, 20, 60],
       [`${kind}:${row.email}`, 5, 3600],
@@ -125,8 +128,9 @@ export async function handleForm(
       })
       if (!result.ok) throw new Error('rate storage')
       if ((await result.json()) !== true)
-        return response(429, 'Too many attempts. Please wait before trying again.')
+        return response(429, 'Too many attempts. Please wait before trying again.', windowSeconds)
     }
+    stage = 'bot_verification'
     const verified = await fetcher('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -157,6 +161,7 @@ export async function handleForm(
         : kind === 'team'
           ? 'altheia_team_interest'
           : 'altheia_enquiries'
+    stage = 'storage'
     const stored = await fetcher(db + table, {
       method: 'POST',
       headers: {
@@ -179,7 +184,9 @@ export async function handleForm(
   } catch (error) {
     if (error instanceof ValidationError) return response(400, error.message)
     if (error instanceof RangeError) return response(413, 'Your message is too long.')
-    if (error instanceof SyntaxError) return response(400, 'Please check your form and try again.')
+    if (stage === 'input' && error instanceof SyntaxError)
+      return response(400, 'Please check your form and try again.')
+    console.error({ event: 'form_dependency_failure', form: kind, stage })
     return response(
       503,
       'We couldn’t save your request. Your details are still in the form; please try again later.',

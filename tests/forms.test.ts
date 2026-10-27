@@ -269,3 +269,25 @@ test('contact stores an enquiry and does not claim email delivery', async () => 
   assert.equal(service.stored[0]?.category, 'Privacy request')
   assert.doesNotMatch((await result.json()).message, /email.*sent/i)
 })
+
+test('email rate limits report the hourly retry interval', async () => {
+  let calls = 0
+  const fakeFetch: typeof fetch = async () => Response.json(++calls === 1)
+  const result = await handleForm(request(), env, 'waitlist', fakeFetch)
+  assert.equal(result.status, 429)
+  assert.equal(result.headers.get('Retry-After'), '3600')
+  assert.equal(calls, 2)
+})
+
+test('malformed dependency responses are service errors, not invalid user input', async () => {
+  for (const brokenService of ['rpc/', 'siteverify']) {
+    const base = services().fakeFetch
+    const fakeFetch: typeof fetch = async (url, init) =>
+      String(url).includes(brokenService)
+        ? new Response('internal provider diagnostic', { status: 200 })
+        : base(url, init)
+    const result = await handleForm(request(), env, 'waitlist', fakeFetch)
+    assert.equal(result.status, 503)
+    assert.doesNotMatch(await result.text(), /internal provider diagnostic|SyntaxError/)
+  }
+})
