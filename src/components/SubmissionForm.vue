@@ -33,7 +33,7 @@ async function submit() {
   const common = { email: data.email, website: data.website, token: token.value }
   const payload =
     props.kind === 'waitlist'
-      ? { ...common, game: data.game, role: data.role, marketingConsent: data.marketingConsent }
+      ? { ...common, marketingConsent: data.marketingConsent }
       : props.kind === 'team'
         ? {
             ...common,
@@ -93,18 +93,11 @@ async function submit() {
           required
           placeholder="you@example.com"
       /></label>
-      <label v-if="kind !== 'contact'"
-        >{{ kind === 'team' ? 'Game' : 'Preferred game (optional)'
-        }}<select v-model="data.game" :required="kind === 'team'">
+      <label v-if="kind === 'team'"
+        >Game <span>*</span
+        ><select v-model="data.game" required>
           <option value="">Select a game</option>
           <option v-for="game in games" :key="game">{{ game }}</option>
-        </select></label
-      >
-      <label v-if="kind === 'waitlist'"
-        >I’m joining as (optional)<select v-model="data.role">
-          <option value="">Select player type</option>
-          <option value="individual">Individual player</option>
-          <option value="team">Team representative</option>
         </select></label
       >
       <template v-if="kind === 'team'"
@@ -165,23 +158,26 @@ async function submit() {
     </div>
     <label v-if="kind === 'waitlist'" class="checkbox-label"
       ><input v-model="data.marketingConsent" type="checkbox" /><span
-        >I’d also like occasional development updates. This is optional and I can withdraw at any
-        time.</span
+        >Email me occasional Freya product news and development updates from Avaraxia Labs. I can
+        unsubscribe at any time.</span
       ></label
     >
     <label v-if="kind === 'team'" class="checkbox-label"
       ><input v-model="data.permission" type="checkbox" required /><span
-        >I give Avaraxia Labs permission to contact me about team testing and coaching opportunities.
-        Please don’t include teammates’ personal details.</span
+        >I am authorised to contact Avaraxia Labs about this team enquiry. This declaration does not
+        authorise the collection of teammates’ gameplay or voice recordings.</span
       ></label
     >
-    <p class="form-note">
-      {{
-        kind === 'waitlist'
-          ? 'Joining the waitlist lets us contact you about early access. It does not sign you up for broader marketing.'
-          : 'We use these details to review and respond to your enquiry.'
-      }}
-      Read our <RouterLink to="/privacy">draft privacy notice</RouterLink>.
+    <p class="form-note" v-if="kind === 'waitlist'">
+      By joining, you ask Avaraxia Labs to store your email and notify you about early access. You
+      can leave at any time. Read our <RouterLink to="/privacy">Privacy Notice</RouterLink> and
+      <RouterLink to="/terms">Waitlist Terms</RouterLink>. Product news and other development
+      updates are optional.
+    </p>
+    <p class="form-note" v-else>
+      We use your details to respond to this enquiry. Please do not include passwords, sensitive
+      information or other people’s personal details. Read our
+      <RouterLink to="/privacy">Privacy Notice</RouterLink>.
     </p>
     <BotCheck ref="bot" :action="kind" @token="token = $event" />
     <p v-if="error" class="form-error" role="alert">{{ error }}</p>

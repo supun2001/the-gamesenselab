@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Brand from './Brand.vue'
+const openCookieSettings = () => window.dispatchEvent(new Event('open-cookie-settings'))
 </script>
 <template>
   <footer class="site-footer">
@@ -32,8 +33,11 @@ import Brand from './Brand.vue'
       <span>© {{ new Date().getFullYear() }} Avaraxia Labs</span
       ><span>Independent of game publishers. Game names belong to their respective owners.</span>
       <nav aria-label="Legal">
-        <RouterLink to="/privacy">Privacy · draft</RouterLink
-        ><RouterLink to="/terms">Terms · draft</RouterLink>
+        <RouterLink to="/privacy">Privacy</RouterLink><RouterLink to="/terms">Terms</RouterLink
+        ><RouterLink to="/cookies">Cookies</RouterLink>
+        <button type="button" class="cookie-settings-link" @click="openCookieSettings">
+          Cookie settings
+        </button>
       </nav>
     </div>
   </footer>

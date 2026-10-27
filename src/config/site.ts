@@ -3,14 +3,14 @@ export const site = {
   name: 'Avaraxia Labs',
   product: 'Freya',
   tagline: 'Read the game. Rise together.',
-  // The domain and legal identity still need approval before public release.
+  // Public origin is configured for each environment.
   url: import.meta.env?.VITE_SITE_URL?.replace(/\/$/, '') || '',
   wordmark: '/brand/avaraxia-labs-logo.png',
   mark: '/brand/mark.svg',
   socialImage: '/brand/social-preview.png',
   demoVideo: '',
-  privacyContact: '',
-  legalName: '',
+  privacyContact: 'contact@avaraxialabs.com',
+  legalName: 'Supun Hasanka Dalpathadu',
   address: '',
   retentionPolicy: '',
   launch: {
@@ -224,10 +224,10 @@ export const faq = [
   ],
   [
     'What information does the waitlist collect?',
-    'Your email is required. Preferred game and whether you are an individual player or team representative are optional. A separate, unchecked choice lets you opt into development updates. Joining the waitlist does not subscribe you to broader marketing.',
+    'The waitlist asks only for your email address. A separate, unchecked choice lets you opt into development updates. Joining the waitlist does not subscribe you to broader marketing.',
   ],
   [
     'How can I request removal of my information?',
-    'Use the Contact page and choose Privacy request. The founders will use your email to respond to the request. Before public release, Avaraxia Labs must confirm its privacy contact, retention policy and request-handling process; the Privacy page is currently a draft.',
+    'Email contact@avaraxialabs.com or use the Contact page and choose Privacy request. You can withdraw your waitlist and marketing permissions independently at any time.',
   ],
 ]

@@ -17,6 +17,7 @@ const router = createRouter({
     { path: '/account', component: () => import('../views/AccountView.vue') },
     { path: '/contact', component: () => import('../views/ContactView.vue') },
     { path: '/privacy', component: () => import('../views/LegalView.vue') },
+    { path: '/cookies', component: () => import('../views/LegalView.vue') },
     { path: '/terms', component: () => import('../views/LegalView.vue') },
     { path: '/:pathMatch(.*)*', component: () => import('../views/NotFoundView.vue') },
   ],
@@ -45,9 +46,7 @@ router.afterEach((to) => {
   set('meta[name="twitter:description"]', page?.description || '')
   set(
     'meta[name="robots"]',
-    !site.url ||
-      !page ||
-      ['/privacy', '/terms', '/account', '/reset-password', '/email-confirmed'].includes(to.path)
+    !site.url || !page || ['/account', '/reset-password', '/email-confirmed'].includes(to.path)
       ? 'noindex, nofollow'
       : 'index, follow',
   )

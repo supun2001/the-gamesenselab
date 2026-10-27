@@ -22,6 +22,13 @@ import SubmissionForm from '../components/SubmissionForm.vue'
         with your registration. Please do not send passwords, payment details or teammates’ personal
         information.
       </p>
+      <h2>Accessibility help</h2>
+      <p>
+        If you have difficulty using this website or joining the waitlist, email
+        <a href="mailto:support@avaraxialabs.com">support@avaraxialabs.com</a>
+        and describe the page and the problem. We will consider reasonable adjustments and another
+        way to help. Please avoid sending sensitive information.
+      </p>
       <div class="notice">
         <p>
           We’re a pre-launch team. No response-time guarantee is offered. Messages are securely

@@ -63,15 +63,20 @@ export const pages = [
       'Contact Avaraxia Labs about Freya, team testing, creator partnerships, business enquiries or privacy requests.',
   },
   {
-    path: '/privacy',
-    title: 'Draft Privacy Notice — Avaraxia Labs',
+    path: '/cookies',
+    title: 'Cookies and Similar Technologies — Avaraxia Labs',
     description:
-      'Founder-review draft covering Avaraxia Labs’ waitlist, team-interest and contact data flows, providers, choices and outstanding release requirements.',
+      'How Avaraxia Labs uses essential technologies and optional analytics, and how to manage your preferences.',
+  },
+  {
+    path: '/privacy',
+    title: 'Privacy Notice — Avaraxia Labs',
+    description:
+      'How Avaraxia Labs handles personal information, consent, service providers and your privacy rights.',
   },
   {
     path: '/terms',
-    title: 'Draft Terms of Use — Avaraxia Labs',
-    description:
-      'Founder-review draft describing Avaraxia Labs’ pre-launch website, planned pricing, expressions of interest and illustrative coaching examples.',
+    title: 'Website and Waitlist Terms — Avaraxia Labs',
+    description: 'Terms for the Avaraxia Labs website and free Freya early access waitlist.',
   },
 ]

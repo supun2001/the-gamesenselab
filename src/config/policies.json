@@ -1,0 +1,179 @@
+{
+  "/privacy": {
+    "title": "Privacy notice",
+    "date": "27 October 2026",
+    "sections": [
+      {
+        "title": "Who is responsible for your information",
+        "paragraphs": [
+          "Avaraxia Labs is a pre-launch project developing Freya, an AI gaming companion and coach. Supun Hasanka Dalpathadu, based in Scotland, United Kingdom, operates this website and is the controller of personal information described in this notice. Contact: contact@avaraxialabs.com. “We”, “us” and “our” refer to that operator. Avaraxia Labs is not currently represented as an incorporated company."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Information we collect",
+        "paragraphs": [
+          "The waitlist form asks only for your email address. We also process the signup and preference records needed to manage your request, demonstrate permission and handle withdrawal. If you contact us, we receive your email address, message and any information you choose to include. Please do not send passwords, sensitive information or other people’s personal details.",
+          "Our infrastructure providers process technical information needed to deliver and protect the website, including IP addresses, request information and security events. With your permission, Google Analytics collects website interaction information such as pages visited, device and browser information, referral sources and cookie identifiers. An email-only signup does not mean that the website processes no other personal data.",
+          "Our cookie notice explains browser storage and any optional analytics. The waitlist itself does not collect gameplay recordings, voice recordings or payment details. We will provide separate information before introducing those features."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Why we use information and our lawful bases",
+        "paragraphs": [
+          "We rely on your consent to record your request and email you about Freya early access. The clearly labelled signup action expresses that request. Separate optional consent applies to broader product news and development marketing. Consent also applies to optional Google Analytics. You may withdraw these permissions independently at any time.",
+          "We rely on legitimate interests to answer ordinary enquiries and protect the website against abuse, after considering your rights and expectations. We retain minimum suppression records to respect withdrawal and avoid unwanted contact. We rely on legal obligations where applicable to responding to privacy requests and other legally required processing. We do not use a general claim of legal obligation to justify unrelated marketing."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Your choices",
+        "paragraphs": [
+          "You do not need to join the waitlist to browse public information. We need your email address to send the requested notification. Joining does not automatically subscribe you to broader marketing. Declining marketing or analytics does not affect your place on the waitlist."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Service providers and disclosures",
+        "paragraphs": [
+          "We use Cloudflare for website delivery, security and incoming email routing; Supabase for the waitlist database; Resend for outgoing email delivery; and Google Analytics for optional website analytics. Email routing and our receiving mailbox provider process messages you send us. Providers receive the information needed for their functions, such as email addresses and message content for email delivery, and technical identifiers for website delivery or analytics.",
+          "Access is restricted to authorised people and providers who need information for the stated purposes. We may disclose information where required by law or necessary to establish, exercise or defend legal claims. We do not sell the waiting list or use signup emails to train gameplay AI models."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "International processing",
+        "paragraphs": [
+          "Our providers may process information outside the UK, including in the United States. For restricted international transfers, we use applicable UK adequacy arrangements or appropriate contractual safeguards, such as the UK International Data Transfer Agreement or UK Addendum, with additional assessment and measures where required. Resend’s published agreement includes UK transfer provisions and identifies primary processing in the United States. Contact contact@avaraxialabs.com to request information or a copy of relevant safeguards, subject to necessary redactions."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "How long we keep information",
+        "paragraphs": [
+          "We keep your waitlist entry while it is needed to fulfil your early-access request. We remove it when you withdraw, the project closes, or the request has been fulfilled and there is no further permitted purpose. We review inactive entries rather than keeping the list indefinitely. Marketing details remain only while permission and an active purpose continue. Enquiries are kept until resolved and any justified follow-up or dispute period ends. Security and delivery records are retained only for troubleshooting, abuse prevention or a documented incident. Minimal consent and suppression evidence may remain to demonstrate compliance and prevent unwanted re-contact. Deleted information in restricted backups expires through the backup cycle and is not reused for marketing."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Your rights and complaints",
+        "paragraphs": [
+          "Depending on the processing and circumstances, you may ask for access, correction, erasure, restriction or portability, and may object to processing based on legitimate interests. You have the right to object to direct marketing. Where we rely on consent, you may withdraw it without affecting earlier lawful processing. Contact contact@avaraxialabs.com. We normally respond within one month, subject to applicable lawful extensions or exceptions, and request only proportionate identity checks.",
+          "You may complain to us at contact@avaraxialabs.com and to the Information Commissioner’s Office at https://ico.org.uk/make-a-complaint/. There is no requirement to accept marketing to exercise your rights."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Age eligibility and future changes",
+        "paragraphs": [
+          "Children’s information needs particular care. Please contact us if you believe a child has joined without understanding what they agreed to, or if you wish to exercise rights on their behalf. We will assess the request and remove information where appropriate. No gameplay or voice data is collected through this waitlist. We do not use it for solely automated decisions with legal or similarly significant effects. Before adding new uses or transferring responsibility to an incorporated company, we will provide updated information and establish an appropriate lawful basis."
+        ],
+        "bullets": []
+      }
+    ]
+  },
+  "/terms": {
+    "title": "Website and waitlist terms",
+    "date": "27 October 2026",
+    "sections": [
+      {
+        "title": "Operator and service",
+        "paragraphs": [
+          "This website is operated under the Avaraxia Labs name by Supun Hasanka Dalpathadu, based in Scotland, United Kingdom. Contact: contact@avaraxialabs.com. It provides information about Freya and free registration of interest. These terms do not offer a paid coaching service or claim that a limited company has already been incorporated."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Joining and leaving the waitlist",
+        "paragraphs": [
+          "Provide an email address you are entitled to use. Joining is free: no payment details or recurring payment are involved. Registration does not itself guarantee selection, access, launch timing or particular features. A specific promotional offer shown when you register is subject to its stated conditions; these terms do not remove rights arising from that offer. Leave at any time through the removal route in our emails or by contacting contact@avaraxialabs.com. Optional marketing preferences are separate."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Product information and accounts",
+        "paragraphs": [
+          "Roadmaps, proposed prices and coaching examples describe development plans, not guaranteed outcomes. Freya does not guarantee ranks, wins or competitive results. We will explain material changes to specific offers rather than treating development uncertainty as permission to withdraw accrued rights. Future testing and paid services will have separate terms before participation or purchase. The current email-only waitlist does not require a gameplay account or upload."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Acceptable use and access restrictions",
+        "paragraphs": [
+          "Do not misuse the website, introduce malicious code, attempt unauthorised access, impersonate another person or submit information you have no right to share. We may proportionately restrict access to address misuse, security threats or legal requirements. Where appropriate, we will explain the restriction and allow you to contact us. We may change or close the waitlist; we will handle retained information in accordance with the privacy notice."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Content and third parties",
+        "paragraphs": [
+          "Website content is owned by its rights holders or used under licence. You may browse and use the website for lawful personal purposes. Other copying or commercial reuse requires permission unless permitted by law. Third-party game names, trademarks and materials belong to their owners. Their mention does not imply affiliation or endorsement. External sites have their own terms and privacy practices."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Liability and complaints",
+        "paragraphs": [
+          "We take reasonable care but do not guarantee uninterrupted availability. Nothing in these terms excludes liability for fraud, death or personal injury caused by negligence, or any liability or consumer right that cannot lawfully be excluded. Contact support@avaraxialabs.com with complaints. No separate refund process applies to the free waitlist because we take no payment. If you believe you have been charged, send a transaction reference, never full card details."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Law and changes",
+        "paragraphs": [
+          "These terms are governed by Scots law. Consumers retain mandatory protections and rights to use courts available under applicable law, including any right to bring proceedings where they live. We may revise these terms for legitimate operational or legal reasons, explaining material changes where appropriate. Changes will not retrospectively remove rights already acquired."
+        ],
+        "bullets": []
+      }
+    ]
+  },
+  "/cookies": {
+    "title": "Cookies and similar technologies",
+    "date": "27 October 2026",
+    "sections": [
+      {
+        "title": "What this notice covers",
+        "paragraphs": [
+          "Cookies and similar technologies store information on, or access information from, your device. This includes local storage, not only browser cookies. The technologies used on avaraxialabs.com depend on the features you access and your preferences."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Essential website functions",
+        "paragraphs": [
+          "Necessary technologies support website delivery, security and remembering privacy choices. We treat storage as exempt from consent only where the legal conditions are satisfied. Optional analytics is separate from these necessary functions."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Analytics and external content",
+        "paragraphs": [
+          "With your permission, we use Google Analytics to understand how visitors use the site and improve it. We block optional analytics until you accept it. We do not require analytics consent to join the waitlist. Analytics consent is separate from permission to receive email.",
+          "Third-party links take you to services with their own privacy practices. Embedded video or social content can contact its provider while you remain on this site. Where an embed requires optional storage or access, we ask permission before loading it. A link, including a link to the operator’s personal website, is not an endorsement of a third party’s privacy practices."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Your controls",
+        "paragraphs": [
+          "Choose Accept optional, Reject optional or Manage preferences in the cookie controls. You can change your choice through Cookie settings. Withdrawal stops future optional analytics; it does not undo processing that was lawful before withdrawal. Browser settings can also remove cookies already stored. Contact contact@avaraxialabs.com for help."
+        ],
+        "bullets": []
+      },
+      {
+        "title": "Google Analytics cookies",
+        "paragraphs": [
+          "Further information about Google’s handling of data is available at https://policies.google.com/privacy. Questions about this website’s use of cookies should be sent to contact@avaraxialabs.com."
+        ],
+        "bullets": [
+          "_ga — distinguishes browser visitors for analytics. Google’s documented default expiry is two years; browser limits and configured settings can shorten this.",
+          "_ga_<container-id> — maintains analytics session state. Google documents a default expiry of two years, subject to configuration and browser restrictions.",
+          "Cookie lifetime differs from how long analytics event information remains in the provider’s systems. We limit identifiable information to what is needed for the stated analytics purpose.",
+          "Analytics identifiers do not need your signup email. We do not intentionally send email addresses or form contents to Google Analytics.",
+          "Necessary preference and security technologies are used only for their stated functions, not as permission for analytics or advertising."
+        ]
+      }
+    ]
+  }
+}
